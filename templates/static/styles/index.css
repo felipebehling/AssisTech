@@ -232,74 +232,58 @@ main {
 
   opacity: .7;
 }
-#a-help{
-  width: 70px;
-  height: 70px;
 
+
+
+
+#a-help{
+  width: 240px;
+  height: 80px;
+
+  border-radius: 50px;
+
+  font-size: 25px;
   color: #fff;
 
+  background-color: #3cc88f;
+
   display: flex;
+
+  transition: .3s ease-out;
 }
-.wrapper {
-  width: 70px;
-  height: 70px;
+#a-help:hover {
+  box-shadow: inset 240px 0 0 0 #31a778;
 
-}
-.wrapper .button {
-  margin: 0 5px;
-
-  width: 60px;
-  height: 60px;
-
-  border-radius: 50px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
-
-  background: #3cc88f;
-
-  cursor: pointer;
-  
-  overflow: hidden;
-
-  transition: all .3s ease-out;
-}
-.wrapper .button:hover {
-  width: 200px;
-
-}
-.wrapper .button:hover > .icon i {
-  transform: rotate(720deg);
-  transition: .3s ease-in-out;
-}
-.wrapper .button .icon {
-  width: 60px;
-  height: 60px;
-
-  border-radius: 50px;
-
-  text-align: center;
-
-  line-height: 60px;
-
-  display: inline-block;
+  transition: .3s ease-in;
 }
 
-.wrapper .button .icon i {
-  font-size: 35px;
 
-  line-height: 60px;
+#a-help .button {
+  margin: 0 auto;
 
-  transform: rotate(360deg);
-  transition: .3s ease-in-out;
+  width: 90%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.wrapper .button span {
-  margin: 0 0 0 -5px;
+#a-help .icon {
+  margin: 0 0 0 8px;
 
-  height: 50px;
-
-  font-size: 32px;
-  font-weight: 600;
-  /* line-height: 60px; */
+  font-size: 40px;
 }
+#a-help .button h1 {
+  margin: 0 7px 0 0;
+
+  width: 145px;
+  height: 48px;
+}
+
+
+
+
+
+
 
 
 /* About */
