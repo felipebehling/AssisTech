@@ -234,54 +234,19 @@ main {
 }
 
 
+.btn {
+  padding: 8px 20px;
 
+  border-color: #3cc88f;
+  border-radius: .3rem;
 
-#a-help{
-  width: 240px;
-  height: 80px;
-
-  border-radius: 50px;
-
-  font-size: 25px;
-  color: #fff;
+  font-size: 35px;
 
   background-color: #3cc88f;
 
-  display: flex;
-
-  transition: .3s ease-out;
+  
+  transition: .35s ease-out;
 }
-#a-help:hover {
-  box-shadow: inset 240px 0 0 0 #31a778;
-
-  transition: .3s ease-in;
-}
-
-
-#a-help .button {
-  margin: 0 auto;
-
-  width: 90%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-#a-help .icon {
-  margin: 0 0 0 8px;
-
-  font-size: 40px;
-}
-#a-help .button h1 {
-  margin: 0 7px 0 0;
-
-  width: 145px;
-  height: 48px;
-}
-
-
-
-
 
 
 
