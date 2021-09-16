@@ -1,0 +1,202 @@
+{% load static %}
+
+{% include 'partials/_head.html' %}
+
+<body>
+  <header class="header">
+    <div class="header-div-1">
+      <div>
+        <a href="#home">
+          <img src="{% static 'img/AssisTech dark.png' %}" alt="Logo">
+        </a>
+      </div>
+    </div>
+    <div class="shortcuts-div">
+
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#donate">Doações</a></li>
+        <li><a href="#">Trabalhe conosco</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="home-section">
+      <div class="p-holder-left">
+        <p>
+          Eles precisam da sua ajuda!
+        </p>
+        <p>
+          Enquanto você está na sua casa, milhares de pessoas moram na rua mesmo durante o imenso frio do inverno, mesmo
+          durante o intenso calor do verão, mesmo com a enorme fome que sentem, eles precisam da nossa ajuda! Se você
+          souber da localização de algum morador de rua, relate!
+        </p>
+        
+        <a id="a-help" href="">
+          <div class="wrapper">
+            <div class="button" onclick="botao()">
+              <div class="icon">
+                <i class="fas fa-compass"></i>
+                <!-- <i class="fas fa-globe"></i> -->
+                <!-- <i class="fas fa-map-marked-alt"></i> -->
+                <!-- <i class="fas fa-map-marker-alt"></i> -->
+              </div>
+              <span>Ajudar</span>
+            </div>
+          </div>
+        </a>
+        
+        
+      </div>
+    </section>
+    
+    <section class="about-section">
+      
+      <div class="holder-about">
+        <div class="p-holder-about">
+          <div class="h1-holder-about">
+            <h1>Sobre</h1>
+          </div>
+          <p>
+            A AssisTech é um site que tem como objetivo auxiliar o Centro Pop, é uma instituição que auxilia os
+            moradores de rua dando um lar para eles,
+            informando a eles a localização de moradores de ruas para serem acolhidos através de relatos feitos por
+            cidadãos da cidade de Blumenau.
+          </p>
+          <p>
+            A inspiração para nosso projeto teve vida quando um membro do grupo contou que havia um morador de rua
+            vivendo perto da sua casa, indignados com essa situação pensamos,
+            por que não fazemos um site para pessoas relatarem onde vivem estes moradores para que o centro Pop possa
+            oferecer a eles uma casa.
+          </p>
+        </div>
+        
+        <div class="info-holder">
+          <!-- <img src="./imgs/info_icon_blue.png" alt=""> -->
+          <i class="bi bi-info-circle"></i>
+        </div>
+      </div>
+      
+    </section>
+    
+    
+    <section id="donate" class="content">
+      
+      <div class="text">
+        <p>
+          Faça sua doação e ajude a quem precisa!
+        </p>
+      </div>
+
+      <div class="pagamento test" id="test">
+        <div class="title">
+          <h2>Cartão de Crédito</h2>
+          <i class="bi bi-x" id="buttonClose" onclick="closeX()" ></i>
+        </div>
+        <div class="inputs">
+            <div class="input-number">
+                <i class="fas fa-credit-card"></i><input type="number" placeholder="Número do cartão">
+            </div>
+            <div class="input-cvv">
+                <input type="number" placeholder="CVV">
+            </div>
+            <div class="input-date">
+                <input type="text" list="month" placeholder="Mês Validade">
+                <datalist id="month">
+                    <option>Janeiro</option>
+                    <option>Fevereiro</option>
+                    <option>Março</option>
+                    <option>Abril</option>
+                    <option>Maio</option>
+                    <option>Junho</option>
+                    <option>Julho</option>
+                    <option>Agosto</option>
+                    <option>Setembro</option>
+                    <option>Outubro</option>
+                    <option>Novembro</option>
+                    <option>Dezembro</option>
+                </datalist>
+                <input type="text" list="year" placeholder="Ano Validade">
+                <datalist id="year">
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                    <option>2025</option>
+                    <option>2026</option>
+                    <option>2027</option>
+                    <option>2028</option>
+                    <option>2029</option>
+                    <option>2030</option>
+                    <option>2031</option>
+                    <option>2032</option>
+                    <option>2033</option>
+                    <option>2034</option>
+                    <option>2035</option>
+                </datalist>
+            </div>
+            <div class="input-data">
+                <input type="text" placeholder="Nome do titular do cartão">
+                <input type="number" placeholder="CPF">
+            </div>
+            <div class="button">
+                <button type="submit">CONTINUAR</button>
+            </div>
+        </div>
+      </div>
+
+      <div>
+
+      </div>
+
+      <div class="donate" id="donate">
+        <h2 id="title">Doações</h2>
+        <div class="buttons" id="buttons">
+          <button class="btn credit-card" onclick="move(), creditCard()" >
+            <i class="far fa-credit-card"></i>
+            <p>Cartão de Crédito</p>
+          </button>
+          <button class="btn pix"><img src="{% static 'img/pix.png' %}" alt="">
+            <p>PIX</p>
+          </button>
+          <button class="btn boleto"><i class="fas fa-barcode"></i>
+            <p>Boleto</p>
+          </button>
+        </div>
+      </div>
+
+      <div>
+
+      </div>
+
+    </section>
+
+
+
+
+  </main>
+
+
+  <div class="container w-100">
+    <footer class="py-3 my-3 ">
+      <ul class="nav justify-content-center border-bottom pb-2 mb-1">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+      <p class="text-center text-muted">© 2021 Company, Inc</p>
+    </footer>
+  </div>
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="{% static 'scripts/index.js' %}"></script>
+</body>
+
+</html>
