@@ -1,3 +1,5 @@
+
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect 
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
@@ -16,12 +18,11 @@ from django.shortcuts import render
 def index(request):
   return render(request, 'pages/index.html')
 
-@login_required(login_url='login')
 def registerPage(request):
-    form = UserCreationForm
+    form = User
 
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = User(request.POST)
         if form.is_valid():
             messages.add_message(request, messages.SUCCESS, 'Usuário cadastrado com sucesso.')
             form.save()
@@ -32,14 +33,14 @@ def registerPage(request):
 
 def loginPage(request):
     if request.method == 'POST':
-        username = request.POST.get('CPF')
+        email = request.POST.get('user')
         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
-            return render(request, 'pages/dashboard.html')
+            return render(request, 'pages/index.html')
         else:
             messages.info(request, 'CPF ou senha incorreta!' )
     context = {}
