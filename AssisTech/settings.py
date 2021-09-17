@@ -68,8 +68,10 @@ TEMPLATES = [
         },
     },
 ]
+AUTH_USER_MODEL = 'assis_tech.Account'
 
 WSGI_APPLICATION = 'AssisTech.wsgi.application'
+
 
 
 # Database

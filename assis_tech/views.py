@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
-
+from assis_tech.form import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
@@ -19,15 +19,14 @@ def index(request):
   return render(request, 'pages/index.html')
 
 def registerPage(request):
-    form = User
-
+    context = {}
     if request.method == "POST":
-        form = User(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             messages.add_message(request, messages.SUCCESS, 'Usuário cadastrado com sucesso.')
             form.save()
+        
 
-    context = {'form': form}
 
     return render(request, 'pages/register.html', context)
 
