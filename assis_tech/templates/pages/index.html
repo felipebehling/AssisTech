@@ -16,8 +16,8 @@
       <ul>
         <li><a href="#home">Inicio</a></li>
         <li><a href="#donate">Doações</a></li>
-        <li><a href="#">Relatar</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="#">Trabalhe conosco</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
       </ul>
 
     </div>
@@ -35,11 +35,20 @@
           souber da localização de algum morador de rua, relate!
         </p>
         
-          <a href="#" type="button" class="btn btn-block btn-success btn-lg">
-            <i class="fas fa-compass"></i>
-            Relatar
-          </a>
-     
+        <a id="a-help" href="">
+          <div class="wrapper">
+            <div class="button" onclick="botao()">
+              <div class="icon">
+                <i class="fas fa-compass"></i>
+                <!-- <i class="fas fa-globe"></i> -->
+                <!-- <i class="fas fa-map-marked-alt"></i> -->
+                <!-- <i class="fas fa-map-marker-alt"></i> -->
+              </div>
+              <span>Ajudar</span>
+            </div>
+          </div>
+        </a>
+        
         
       </div>
     </section>
