@@ -1,3 +1,5 @@
+{% load static %}
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -7,7 +9,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
   <!-- Theme style -->
@@ -17,14 +19,15 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a href="" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="" method="post">
+      <form action="" method="POST">
+        {% csrf_token %}
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
+          {{form.username}}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
