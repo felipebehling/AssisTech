@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
-from assis_tech.form import CreateUserForm
+from assis_tech.form import CreateUserForm, AccountAuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib import messages
@@ -31,19 +31,28 @@ def registerPage(request):
     return render(request, 'pages/register.html', context)
 
 def loginPage(request):
-    if request.method == 'POST':
-        username = request.POST.get('user')
-        password = request.POST.get('password')
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return render(request, 'pages/index.html')
-        else:
-            messages.info(request, 'CPF ou senha incorreta!' )
     context = {}
-    return render(request, 'pages/login.html')
+
+    user = request.user
+    if user.is_authenticated:
+        return redirect('home')
+
+    if request.POST:
+        form = AccountAuthenticationForm(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(email=email, password=password)
+
+            if user:
+                login(request, user)
+                return redirect('index')
+    else:
+        form = AccountAuthenticationForm()
+
+    context['login_form'] = form
+    return render(request, 'pages/login.html', context)
+
 
 def logoutUser(request):
     logout(request)

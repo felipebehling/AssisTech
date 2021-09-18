@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'assis_tech.apps.AssisTechConfig',
 ]
 
+AUTH_USER_MODEL = 'assis_tech.Account'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -68,7 +70,6 @@ TEMPLATES = [
         },
     },
 ]
-AUTH_USER_MODEL = 'assis_tech.Account'
 
 WSGI_APPLICATION = 'AssisTech.wsgi.application'
 
