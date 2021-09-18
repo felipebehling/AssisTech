@@ -1,0 +1,34 @@
+body {
+    background: url(../img/background_registerV3.jpg);
+    background-size: cover;
+}
+
+.card-header {
+    margin-top: 200px;
+}
+
+.register-box {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 450px;
+}
+
+.card {
+    border-radius: 0px;
+    height: 100%;
+}
+
+.login-box-msg {
+    margin-bottom: 50px;
+}
+
+.text-admin {
+    color: #3cc88f;
+}
+
+.text-admin:hover {
+    color: #217755;
+}
+
+

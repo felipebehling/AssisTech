@@ -1,5 +1,101 @@
-<form action="" method="POST">
-  {{csrf_token}}
-  {{form}}
+{% load static %}
 
-</form>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AssisTech - Registrar</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
+  <!-- Css -->
+  <link rel="stylesheet" href="{% static 'styles/register.css' %}">
+</head>
+
+
+<body class="hold-transition register-page">
+    
+<div class="register-box">
+  <div class="card card-outline card-success">
+    <div class="card-header text-center">
+      <a href="../../index2.html" class="h1"><b>Register</b></a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Registre um novo admin</p>
+
+      <form action="" method="post"> {% csrf_token %}
+        <div class="input-group mb-4">
+          <input type="text" class="form-control" name='username' placeholder="Nome completo">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-4">
+          <input type="email" class="form-control" name='email' placeholder="E-mail">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-4">
+          <input type="text" class="form-control" name='cpf' placeholder="CPF">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user-shield"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-4">
+          <input type="password" class="form-control" name='password1' placeholder="Senha">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-4">
+          <input type="password" class="form-control" name='password2' placeholder="Confirme a senha">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-success btn-block mt-4">Registrar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="text-center mt-3">
+          <a href="../login" class="text-center text-admin">Voltar para o painel admin</a>
+      </div>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
+
+</body>
+</html>
