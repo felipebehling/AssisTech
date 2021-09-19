@@ -9,9 +9,9 @@ import os
 class MyAccountManager(BaseUserManager):
 	def create_user(self, email, username, password=None):
 		if not email:
-			raise ValueError('Users must have an email address')
+			raise ValueError('Usuarios precisam ter um email!')
 		if not username:
-			raise ValueError('Users must have a username')
+			raise ValueError('Usuarios precisam ter um nome!')
 
 		user = self.model(
 			email=self.normalize_email(email),
@@ -35,14 +35,14 @@ class MyAccountManager(BaseUserManager):
 		return user
 
 
-def get_profile_image_filepath(self, filename):
+def get_profile_image_filepath(self, filename): #Altera o nome da imagem recebida pelo usuario e transforma em um padrão(só muda a pk sendo única para cada um).
 	return 'profile_images/' + str(self.pk) + '/profile_image.png'
 
-def get_default_profile_image():
+def get_default_profile_image():	#Caso a pessoa não coloque uma foto
 	return "img/AssisTech.png"
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser): #Campos como is_admin, is_active, is_staff, is_superuser são obrigatorios para criar um model de usuario
 	email = models.EmailField(verbose_name="email", max_length=60, unique=True)
 	username 				= models.CharField(max_length=30, unique=True)
 	cpf 				= models.CharField(max_length=30, unique=True)
@@ -55,8 +55,8 @@ class Account(AbstractBaseUser):
 	profile_image			= models.ImageField(max_length=255, upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)
 	hide_email				= models.BooleanField(default=True)
 
-	USERNAME_FIELD = 'email'
-	REQUIRED_FIELDS = ['username', 'cpf']
+	USERNAME_FIELD = 'email' #Altera a Forma de login principal(vem por padrão username).
+	REQUIRED_FIELDS = ['username', 'cpf'] #Coloque dentro do colchetes os campos obrigatórios.
 
 	objects = MyAccountManager()
 
@@ -66,10 +66,10 @@ class Account(AbstractBaseUser):
 	def get_profile_image_filename(self):
 		return str(self.profile_image)[str(self.profile_image).index('profile_images/' + str(self.pk) + "/"):]
 
-	# For checking permissions. to keep it simple all admin have ALL permissons
+	# Para verificar as permissões, todos os administradores têm TODAS as permissões. BRABO DMS
 	def has_perm(self, perm, obj=None):
 		return self.is_admin
 
-	# Does this user have permission to view this app? (ALWAYS YES FOR SIMPLICITY)
+	#Este usuário tem permissão para visualizar este aplicativo? (SEMPRE SIM PARA SIMPLICIDADE)
 	def has_module_perms(self, app_label):
 		return True

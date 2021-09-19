@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = Account
-		fields = ['username', 'email', 'password1', 'password2']
+		fields = ['username', 'email', 'cpf', 'password1', 'password2'] #Campos que vão para o Register. (são do model Account em models.) 
 
 
 class AccountAuthenticationForm(forms.ModelForm):
