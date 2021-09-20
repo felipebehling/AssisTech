@@ -5,10 +5,11 @@
     box-sizing: border-box;
 }
 
-.cards{
-    font-family: 'Poppins', sans-serif;
+.card-row{
+    margin: auto;
 }
 
-.card-row{
+.table-container{
+    width: 80%;
     margin: auto;
 }
