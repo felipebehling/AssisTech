@@ -2,6 +2,10 @@
 
 {% include 'partials/_head.html' %}
 
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/index.css' %}">
+</head>
+
 <body>
   <header class="header">
     <div class="header-div-1">
@@ -35,20 +39,11 @@
           souber da localização de algum morador de rua, relate!
         </p>
         
-        <a id="a-help" href="">
-          <div class="wrapper">
-            <div class="button" onclick="botao()">
-              <div class="icon">
-                <i class="fas fa-compass"></i>
-                <!-- <i class="fas fa-globe"></i> -->
-                <!-- <i class="fas fa-map-marked-alt"></i> -->
-                <!-- <i class="fas fa-map-marker-alt"></i> -->
-              </div>
-              <span>Ajudar</span>
-            </div>
-          </div>
-        </a>
-        
+
+          <a href="#" type="button" class="btn btn-block btn-success btn-lg" style="width: 30%;">
+            <i class="fas fa-compass"></i>
+            Relatar
+          </a>
         
       </div>
     </section>

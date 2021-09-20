@@ -57,3 +57,7 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+
+def report(request):
+  return render(request, 'pages/report.html')
