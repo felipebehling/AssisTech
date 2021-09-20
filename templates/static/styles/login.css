@@ -1,21 +1,13 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     background: url(../img/background_registerV3.jpg);
     background-size: cover;
 }
 
-.card-header {
-    margin-top: 20%;
-}
 
-.register-box {
+.login-box {
     position: absolute;
     right: 0;
+    top: 0;
     height: 100%;
     width: 450px;
 }
@@ -23,6 +15,10 @@ body {
 .card {
     border-radius: 0px;
     height: 100%;
+}
+
+.card-header {
+    margin-top: 200px;
 }
 
 .login-box-msg {
@@ -52,7 +48,7 @@ body {
         width: 100%;
     }
 
-    .register-box {
+    .login-box {
         width: 100%;
     }
 }
