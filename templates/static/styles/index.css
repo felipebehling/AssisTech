@@ -234,7 +234,9 @@ main {
 }
 
 
-.btn {
+.home-section a, .home-section .btn {
+  width: 35%;
+
   padding: 8px 20px;
 
   border-color: #3cc88f;
