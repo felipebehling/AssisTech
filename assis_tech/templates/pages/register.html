@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="input-group mb-4">
-          <input type="text" class="form-control" name='cpf' placeholder="CPF">
+          <input type="tel" class="form-control" name='cpf' placeholder="CPF" id="cpf" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-address-card"></span>
@@ -89,6 +89,13 @@
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->
+
+<script src="{% static 'scripts/masks.js' %}"></script>
+
+<script>
+  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
+  new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
+</script>
 
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>

@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="number" class="form-control" placeholder="CPF" min="0">
+          <input type="tel" id="cpf" class="form-control" placeholder="CPF" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-address-card"></span>
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="input-group mb-3 col-5 pr-0">
-            <input type="number" class="form-control" placeholder="Telefone">
+            <input type="tel" id="tel" class="form-control" placeholder="Telefone" autocomplete="off">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-phone"></span>
@@ -84,6 +84,13 @@
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->
+
+<script src="{% static 'scripts/masks.js' %}"></script>
+
+<script>
+  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
+  new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
+</script>
 
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
