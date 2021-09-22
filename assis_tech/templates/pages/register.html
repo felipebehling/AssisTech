@@ -31,6 +31,17 @@
     <div class="card-body">
       <p class="login-box-msg">Registre um novo administrador</p>
 
+      {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-warning **{{message.tags}}** alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close white" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+        {% endif %}  
+
       <form action="" method="post"> {% csrf_token %}
         <div class="input-group mb-4">
           <input type="text" class="form-control" name='username' placeholder="Nome completo">

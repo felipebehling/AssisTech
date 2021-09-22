@@ -25,7 +25,7 @@ def registerPage(request):
         if form.is_valid():
             messages.add_message(request, messages.SUCCESS, 'Usuário cadastrado com sucesso.')
             form.save()
-        
+        messages.add_message(request, messages.ERROR, 'Falha ao Registrar Usuário.')   
 
 
     return render(request, 'pages/register.html', context)
@@ -47,6 +47,7 @@ def loginPage(request):
             if user:
                 login(request, user)
                 return redirect('index')
+        messages.add_message(request, messages.ERROR, 'Email ou Senha Inválido.')
     else:
         form = AccountAuthenticationForm()
 
