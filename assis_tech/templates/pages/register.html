@@ -33,7 +33,7 @@
 
       <form action="" method="post"> {% csrf_token %}
         <div class="input-group mb-4">
-          <input type="text" class="form-control" name='username' placeholder="Nome completo">
+          <input type="text" class="form-control" name='username' placeholder="Nome completo" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="input-group mb-4">
-          <input type="email" class="form-control" name='email' placeholder="E-mail">
+          <input type="email" class="form-control" name='email' placeholder="E-mail" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

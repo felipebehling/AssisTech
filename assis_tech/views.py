@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
+from .form import relato_form
 from django.shortcuts import render
 
 # Create your views here.
@@ -61,3 +62,9 @@ def logoutUser(request):
 
 def report(request):
   return render(request, 'pages/report.html')
+
+
+def form(request):
+    data = {}
+    data['form'] = relato_form()
+    return render(request, 'pages/report.html', data)
