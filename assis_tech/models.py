@@ -105,7 +105,7 @@ class Relato(models.Model):
     data_criacao = models.DateTimeField(default=timezone.now)
     descricao = models.TextField(blank=True)
     local = models.CharField(max_length=100)
-    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, default='relatos')
 
     def __str__(self):
         return self.nome

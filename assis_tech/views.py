@@ -12,7 +12,6 @@ from django.core.paginator import Paginator
 from .filters import RelatoFilter
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
 # Create your views here.
 
@@ -69,6 +68,15 @@ def form(request):
     data = {}
     data['form'] = relato_form()
     return render(request, 'pages/report.html', data)
+
+
+def relato_create(request):
+    form = relato_form(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+
+
 
 def dashboard(request):
   list_relatos = Relato.objects.order_by('id')

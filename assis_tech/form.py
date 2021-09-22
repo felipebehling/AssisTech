@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .models import Relato
 
-from .models import Account, relato
+from .models import Account, Relato
 
 
 class CreateUserForm(UserCreationForm):
