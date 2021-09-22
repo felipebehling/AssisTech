@@ -495,7 +495,7 @@ button i {
 .pagamento {
   background-color: #fff;
   width: 600px;
-  height: 400px;
+  height: 480px;
   border-radius: 15px;
   padding: 20px;
   position: absolute;
@@ -525,7 +525,7 @@ input {
   outline: none;
   margin-bottom: 15px;
   background-color: white;
-  border: 1px solid #808080c9;
+  border: 1px solid #e0e0e0;
   color: #25283a;
   padding: 10px;
 }
@@ -539,7 +539,7 @@ input::placeholder {
   width: 100%;
   background-color: white;
   margin-bottom: 15px;
-  border: 1px solid #808080c9;
+  border: 1px solid #e0e0e0;
 }
 
 .pagamento .inputs .input-number i {
@@ -565,7 +565,7 @@ input::placeholder {
   width: 40%;
   border: none;
   outline: none;
-  border: 1px solid #808080c9;
+  border: 1px solid #e0e0e0;
 }
 
 .pagamento .inputs .input-date {
@@ -639,4 +639,52 @@ input::placeholder {
   display: block;
   opacity: 1;
   transition: all .3s linear;
+}
+
+.select-amount {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.select-box {
+  position: relative;
+  float: left;
+  width: 25%;
+  padding: 0px 10px;
+  text-align: center;
+}
+
+.input {
+  left: 0px;
+  top: 0px;
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+}
+
+.input:checked {
+  background-color: #3cc88f;
+}
+
+label {
+  display: block;
+  line-height: 24px;
+  padding: 12px 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #25283a;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all .15s ease;
+  font-family: 'Roboto', sans-serif;
+  color: #25283a;
+}
+
+.select-box input[type="radio"]:checked+label {
+  background: #3cc88f;
+  border-color: #3cc88f;
+  color: white;
 }

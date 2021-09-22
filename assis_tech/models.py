@@ -95,3 +95,11 @@ class relato(models.Model):
     email 				= models.CharField(max_length=255, blank=True)
     data_criacao 		= models.DateTimeField(default=timezone.now)
     descricao 			= models.TextField(blank=True)
+
+
+# class Values(models.Model):
+#     name = models.CharField(max_length=50)
+# class CreditCard(models.Model):
+#     number_card = models.CharField(max_length=16)
+#     cvv = models.CharField(max_length=3)
+#     mes_
