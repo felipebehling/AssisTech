@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <html lang="pt-br">
 <head>
@@ -16,7 +17,7 @@
   <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
 
   <link rel="stylesheet" type="text/css" href="{% static 'styles/report.css' %}">
-
+  <link rel="shortcut icon" href="{% static 'img/logo ps.png' %}" type="image/x-icon">
 </head>
 
 
@@ -29,9 +30,12 @@
     <div class="card-body">
       <p class="login-box-msg"><b>Formulário de relato</b></p>
 
-      <form action="../../index.html" method="post">
+      <form action="/relato_create/" method="POST">
+        {% csrf_token %}
+        
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nome Completo">
+          <input type="text" name="nome" class="form-control" placeholder="Nome Completo" autocomplete="off">
+          {% render_field form.nome name="nome" %}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -39,7 +43,8 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="tel" id="cpf" class="form-control" placeholder="CPF" autocomplete="off">
+          <input type="tel" id="cpf" name="cpf" class="form-control" placeholder="CPF" autocomplete="off">
+          {% render_field form.cpf name="cpf" %}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-address-card"></span>
@@ -48,7 +53,8 @@
         </div>
         <div class="input-group col-12 m-0 p-0">
           <div class="input-group mb-3 col-7 p-0" >
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="email" nome="email" class="form-control" placeholder="Email" autocomplete="off">
+            {% render_field form.email name="email" %}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -57,11 +63,22 @@
           </div>
           <div class="input-group mb-3 col-5 pr-0">
             <input type="tel" id="tel" class="form-control" placeholder="Telefone" autocomplete="off">
+            {% render_field form.tel name="tel" %}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-phone"></span>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="input-group mb-3 col-12 px-0">
+          <input type="text" id="local" name="local" class="form-control" placeholder="Localização" autocomplete="off">
+          {% render_field form.local name="local" %}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marked-alt"></span>
+            </div>
+            <button type="button" class="btn btn-block btn-outline-secondary btn-sm ml-1 br-2">Localização atual <i class="fas fa-street-view px-1"></i></button>
           </div>
         </div>
 
