@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/_nav_dashboard.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/dist/css/adminlte.min.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+  {% include 'partials/_nav_dashboard.html' %}
+    <div class="table-container card">
+      <div class="card-header clearfix d-flex">
+        <div class="row d-flex">
+          <div class="col">
+            <form method="get" class="form-inline">
+              <div class="form-group mb-2">
+                <label for="nome">Nome</label>
+                {{myFilter.form.nome}}
+              </div>
+              <div class="form-group mb-2">
+                <label for="cpf">CPF</label>
+                {{myFilter.form.cpf}}
+              </div>
+              <div class="form-group mb-2">
+                <label for="categoria">Categoria</label>
+                {{myFilter.form.categoria}}
+              </div>
+              <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </form>
+          </div>
+        </div>
+        <nav class='nav-pag' aria-label="Page navigation example">
+          <ul class="pagination">
+            {% for pagina in relatos.paginator.page_range %}
+            {% if relatos.number == pagina %}
+              <li class="page-item active">
+                <a href="?page={{pagina}}" class="page-link">{{pagina}}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{pagina}}">{{pagina}}</a>
+              </li>
+            {% endif %}
+            <!-- ADICIONAR UM BOTÃO DE NEXT E PREVIOUS(CASO FOR PAGINA 1 NÃO DEVERÁ HAVER PREVIOUS) -->
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table m-0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Data de Criação</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for relato in relatos %}
+              <tr>
+                <td>{{ relato.id }}</td>
+                <td>{{ relato.nome }}</td>
+                <td>{{ relato.cpf }}</td>
+                <td>{{ relato.data_criacao }}</td>
+                <td>{{ relato.categoria }}</td>
+                <td>
+                  <a href="detalhe/{{ relato.id }}/" class="btn btn-outline-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg></a>
+                  <a href="editar/{{ relato.id }}/" class="btn btn-outline-primary"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg></a>
+                  <a href="deletar/{{ relato.id }}/" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                  </svg></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+    </div>
+      
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/dist/js/adminlte.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery-mousewheel/jquery.mousewheel.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/raphael/raphael.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery-mapael/jquery.mapael.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery-mapael/maps/usa_states.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/chart.js/Chart.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/dist/js/demo.js' %}"></script>
+    <script src="{% static 'vendor/AdminLTE-3.1.0/dist/js/script>
+</body>
+</html>
