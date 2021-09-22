@@ -6,12 +6,12 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from assis_tech.form import CreateUserForm, AccountAuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-
+from .form import relato_form
+from .models import Relato
+from django.core.paginator import Paginator
+from .filters import RelatoFilter
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
-
-from .form import relato_form
 from django.shortcuts import render
 
 # Create your views here.
@@ -69,3 +69,34 @@ def form(request):
     data = {}
     data['form'] = relato_form()
     return render(request, 'pages/report.html', data)
+
+def dashboard(request):
+  list_relatos = Relato.objects.order_by('id')
+  myFilter = RelatoFilter(request.GET, queryset=list_relatos)
+  list_relatos = myFilter.qs
+  
+  paginator = Paginator(list_relatos, 10)
+  page = request.GET.get('page')
+  list_relatos = paginator.get_page(page)
+  return render(request, 'pages/dashboard.html', {'relatos': list_relatos, 'myFilter': myFilter})
+
+def detail(request, pk):
+  relato = Relato.objects.get(pk=pk)
+  return render(request, 'pages/detalhe.html', {'relato': relato})
+
+def edit(request, pk):
+  relato = Relato.objects.get(pk=pk)
+  form = relato_form(instance=relato)
+  return render(request, 'pages/edit.html', {'relato': relato, 'form': form})
+
+def update(request, pk):
+  relato = Relato.objects.get(pk=pk)
+  form = relato_form(request.POST, instance=relato)
+  if form.is_valid():
+    form.save()
+    return redirect('dashboard')
+
+def delete(request, pk):
+  relato = Relato.objects.get(pk=pk)
+  relato.delete()
+  return redirect('dashboard')
