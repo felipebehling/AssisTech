@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'assis_tech.apps.AssisTechConfig',
+    'django_filters',
+    'widget_tweaks',
 ]
 
 AUTH_USER_MODEL = 'assis_tech.Account'
