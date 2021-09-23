@@ -20,7 +20,7 @@
       <ul>
         <li><a href="#home">Inicio</a></li>
         <li><a href="#donate">Doações</a></li>
-        <li><a href="#">Trabalhe conosco</a></li>
+        <li><a href="#map">Localização</a></li>
         <li><a href="{% url 'login' %}">Login</a></li>
       </ul>
 
@@ -169,11 +169,26 @@
 
     </section>
 
+    <section id="map">
 
+      <div class="map-holder">
 
+        <div class="info">
+          <h1>Lorem ipsum</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error nulla ea reprehenderit quibusdam adipisci voluptates voluptatum facere impedit quas ex facilis maiores quam deleniti laborum expedita, provident, illo dicta rerum!</p>
+        </div>
+  
+        <div class="map">
+          <div calss=''>
+            {{m | safe}}
+          </div>
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
-
 
   <div class="container w-100">
     <footer class="py-3 my-3 ">
