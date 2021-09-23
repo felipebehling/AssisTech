@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/_nav_dashboard.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/dist/css/adminlte.min.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+  {% include 'partials/_nav_dashboard.html' %}
+    <div class="table-container card">
+      <div class="card-header clearfix d-flex">
+        <div class="row d-flex">
+          <div class="col">
+            <form method="get" class="form-inline">
+              <div class="form-group mb-2">
+                <label for="nome">Nome</label>
+                {{myFilter.form.nome}}
+              </div>
+              <div class="form-group mb-2">
+                <label for="cpf">CPF</label>
+                {{myFilter.form.cpf}}
+              </div>
+              <div class="form-group mb-2">
+                <label for="categoria">Categoria</label>
+                {{myFilter.form.categoria}}
+              </div>
+              <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </form>
+          </div>
+        </div>
+        <nav class='nav-pag' aria-label="Page navigation example">
+          <ul class="pagination">
+            {% for pagina in relatos.paginator.page_range %}
+            {% if relatos.number == pagina %}
+              <li class="page-item active">
+                <a href="?page={{pagina}}" class="page-link">{{pagina}}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{pagina}}">{{pagina}}</a>
+              </li>
+            {% endif %}
+            <!-- ADICIONAR UM BOTÃO DE NEXT E PREVIOUS(CASO FOR PAGINA 1 NÃO DEVERÁ HAVER PREVIOUS) -->
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table m-0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Data de Criação</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for relato in relatos %}
+              <tr>
+                <td>{{ relato.id }}</td>
+                <td>{{ relato.nome }}</td>
+                <td>{{ relato.cpf }}</td>
+                <td>{{ relato.data_criacao }}</td>
+                <td>{{ relato.categoria }}</td>
+                <td>
+                  <a href="detalhe/{{ relato.id }}/" class="btn btn-outline-secondary">
+                    <i class="bi bi-search"></i>
+                  </a>
+                  <a href="editar/{{ relato.id }}/" class="btn btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i>
+                  </a>
+                  <a href="deletar/{{ relato.id }}/" class="btn btn-outline-danger">
+                    <i class="bi bi-trash-fill"></i>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+    </div>
+      
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/dist/js/adminlte.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery-mousewheel/jquery.mousewheel.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/raphael/raphael.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery-mapael/jquery.mapael.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/jquery-mapael/maps/usa_states.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/plugins/chart.js/Chart.min.js' %}"></script>
+      <script src="{% static 'vendor/AdminLTE-3.1.0/dist/js/demo.js' %}"></script>
+    <script src="{% static 'vendor/AdminLTE-3.1.0/dist/js/script>
+</body>
+</html>

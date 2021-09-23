@@ -47,17 +47,17 @@ def get_default_profile_image():  # Caso a pessoa não coloque uma foto
 
 # Campos como is_admin, is_active, is_staff, is_superuser são obrigatorios para criar um model de usuario
 class Account(AbstractBaseUser):
-    email 					= models.EmailField(verbose_name="email", max_length=60, unique=True)
-    username 				= models.CharField(max_length=30, unique=True)
-    cpf 						= models.CharField(max_length=30, unique=True)
-    date_joined 		= models.DateTimeField(verbose_name='date joined', auto_now_add=True)
-    last_login 			= models.DateTimeField(verbose_name='last login', auto_now=True)
-    is_admin 				= models.BooleanField(default=False)
-    is_active 			= models.BooleanField(default=True)
-    is_staff 				= models.BooleanField(default=False)
-    is_superuser 		= models.BooleanField(default=False)
-    profile_image 	= models.ImageField(max_length=255, upload_to=get_profile_image_filepath,null=True, blank=True, default=get_default_profile_image)
-    hide_email 			= models.BooleanField(default=True)
+    email = models.EmailField(verbose_name="email", max_length=60, unique=True)
+    username = models.CharField(max_length=30, unique=True)
+    cpf = models.CharField(max_length=30, unique=True)
+    date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+    last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
+    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    profile_image = models.ImageField(max_length=255, upload_to=get_profile_image_filepath,null=True, blank=True, default=get_default_profile_image)
+    hide_email = models.BooleanField(default=True)
 
     # Altera a Forma de login principal(vem por padrão username).
     USERNAME_FIELD = 'email'
@@ -80,18 +80,32 @@ class Account(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
+# class categoria_relato(models.Model):
+#     nome = models.CharField(max_length=100)
 
+# class relato(models.Model):
+#     nome				= models.CharField(max_length=100)
+#     cpf_user 			= models.CharField(max_length=30, unique=True)
+#     telefone 			= models.CharField(max_length=12)
+#     email 				= models.CharField(max_length=255, blank=True)
+#     data_criacao 		= models.DateTimeField(default=timezone.now)
+#     descricao 			= models.TextField(blank=True)
 
-
-
-
-class categoria_relato(models.Model):
+class Categoria(models.Model):
     nome = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.nome
 
-class relato(models.Model):
-    nome				= models.CharField(max_length=100)
-    cpf_user 			= models.CharField(max_length=30, unique=True)
-    telefone 			= models.CharField(max_length=12)
-    email 				= models.CharField(max_length=255, blank=True)
-    data_criacao 		= models.DateTimeField(default=timezone.now)
-    descricao 			= models.TextField(blank=True)
+class Relato(models.Model):
+    nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=14)
+    telefone = models.CharField(max_length=20)
+    email = models.CharField(max_length=100)
+    data_criacao = models.DateTimeField(default=timezone.now)
+    descricao = models.TextField(blank=True)
+    local = models.CharField(max_length=100)
+    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, default=1)
+
+    def __str__(self):
+        return self.nome

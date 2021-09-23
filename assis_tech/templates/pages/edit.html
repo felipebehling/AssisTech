@@ -1,0 +1,108 @@
+{% load static %}
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/_nav_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/detalhe.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/dist/css/adminlte.min.css' %}">
+    <title>Dashboard</title>
+</head>
+<body>
+  {% include 'partials/_nav_dashboard.html' %}  
+
+<div class="main-h1-holder-3">
+    <div>
+      <div class="card w-75">
+        <div class="card-head">
+          <h3 class="card-title">Informaçãoes do Relato {{relato.id}}</h3>
+        </div>
+        <div class="card-body dark">
+            <form action="/dashboard/atualizar/{{relato.id}}/" method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                             <i class="fas fa-user mr-2"></i>Nome
+                        </span>
+                    </div>
+                    {% render_field form.nome %}
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-address-card mr-2"></i>CPF
+                        </span>
+                    </div>
+                    {% render_field form.cpf max_length='14' %}
+                </div>
+            
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-phone mr-2"></i>Telefone
+                        </span>
+                    </div>
+                    {{form.telefone}}
+                </div>
+            
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-envelope mr-2"></i>Email
+                        </span>
+                    </div>
+                    {{form.email}}
+                </div>
+            
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-calendar-alt mr-2"></i>Data de criação
+                        </span>
+                    </div>
+                    {{form.data_criacao}}
+                </div>
+            
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-tags mr-2"></i>Categoria
+                        </span>
+                    </div>
+                    {{form.categoria}}
+                </div>
+            
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-map-marker-alt mr-2"></i>Local
+                        </span>
+                    </div>
+                    {{form.local}}
+                </div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-comment-dots mr-2"></i>Descrição
+                        </span>
+                    </div>
+                    {{form.descricao}}
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <a href="{% url 'dashboard' %}" class="btn btn-danger float-right">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>

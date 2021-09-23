@@ -3,8 +3,9 @@ from django import forms
 from django.forms.widgets import PasswordInput
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
+from .models import Relato
 
-from .models import Account, relato
+from .models import Account, Relato
 
 
 class CreateUserForm(UserCreationForm):
@@ -29,15 +30,25 @@ class AccountAuthenticationForm(forms.ModelForm):
             raise forms.ValidationError('Login Inválido!')
 
 
+# class relato_form(ModelForm):
+#     class Meta:
+#         model = relato
+#         fields = "__all__"
+
+#         def __init__(self, *args, **kwargs):
+#             super(relato_form, self).__init__(*args, **kwargs)
+
+#             for field in self.fields:
+#                 self.fields[field].widget.attrs.update({'class': 'form-control'})
+
 class relato_form(ModelForm):
     class Meta:
-        model = relato
-        fields = "__all__"
+        model = Relato
+        fields = '__all__'
 
-        def __init__(self, *args, **kwargs):
-            super(relato_form, self).__init__(*args, **kwargs)
-
-            for field in self.fields:
-                self.fields[field].widget.attrs.update({'class': 'form-control'})
-
+    def __init__(self, *args, **kwargs):
+        super(relato_form, self).__init__(*args, **kwargs)
+        
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
 

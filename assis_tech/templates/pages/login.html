@@ -24,11 +24,21 @@
     </div>
     <div class="card-body">
       <p class="login-box-msg">Login para administradores</p>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-danger **{{message.tags}}** alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close white" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+        {% endfor %}
+      {% endif %}  
 
       <form action="" method="POST">
         {% csrf_token %}
         <div class="input-group mb-3">
-          <input type="email" name='email' class="form-control" placeholder="E-mail">  
+          <input type="email" name='email' class="form-control" placeholder="E-mail" required >  
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -36,7 +46,7 @@
           </div>
         </div>
         <div class="input-group mb-3 d-block">
-          <div class="input-group-append"><input type="password" name='password' class="form-control" placeholder="Senha">
+          <div class="input-group-append"><input type="password" name='password' class="form-control" placeholder="Senha" required>
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
