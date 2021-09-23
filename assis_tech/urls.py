@@ -14,3 +14,5 @@ urlpatterns = [
   path('dashboard/deletar/<int:pk>/', views.delete, name='delete'),
 ]
 
+
+
