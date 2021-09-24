@@ -34,7 +34,7 @@
         {% csrf_token %}
         
         <div class="input-group mb-3">
-          {% render_field form.nome name="nome" %}
+          {% render_field form.nome name="nome" placeholder="Nome Completo"%}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          {% render_field form.cpf name="cpf" %}
+          {% render_field form.cpf name="cpf" id="cpf" placeholder="CPF"%}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-address-card"></span>
@@ -51,7 +51,7 @@
         </div>
         <div class="input-group col-12 m-0 p-0">
           <div class="input-group mb-3 col-7 p-0" >
-            {% render_field form.email name="email" %}
+            {% render_field form.email name="email" placeholder="E-mail" %}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="input-group mb-3 col-5 pr-0">
-            {% render_field form.telefone name="telefone" %}
+            {% render_field form.telefone name="telefone" id="tel" placeholder="Telefone"%}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-phone"></span>
@@ -67,36 +67,78 @@
             </div>
           </div>
         </div>
+
+        <hr>
+        <p class="login-box-msg"><b>Sobre o morador de rua</b></p>
+
         <div class="input-group mb-3 col-12 px-0">
-          {% render_field form.local name="local" %}
+          {% render_field form.local name="local" placeholder="Localização do morador de rua"%}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-map-marked-alt"></span>
             </div>
-            <button type="button" class="btn btn-block btn-outline-secondary btn-sm ml-1 br-2">Localização atual <i class="fas fa-street-view px-1"></i></button>
+            <button type="button" class="btn btn-block btn-outline-secondary btn-sm ml-1 br-2" onclick="getLocation()">Localização atual <i class="fas fa-street-view px-1"></i></button>
           </div>
         </div>
 
-        <hr>
 
         <div class="form-group mb-3">
           <label>Descrição</label>
-          {% render_field form.descricao name="descricao" %}
+          {% render_field form.descricao name="descricao" placeholder="Características do morador de rua, pontos de referência, etc..." %}
         </div>
+
         {% render_field form.data_criacao name="data_criacao" class="d-none" %}
         {% render_field form.categoria name="categoria" class="d-none" %}
+
+
         <div class="row">
           <div class="col-6 m-auto">
             <button type="submit" class="btn btn-success btn-block">Relatar</button>
           </div>
         </div>
+
       </form>
+
+      <div>
+        {{m | safe}}
+      </div>
 
     </div>
   </div>
 </div>
 
 <script src="{% static 'scripts/masks.js' %}"></script>
+
+
+
+<script>
+
+  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
+  new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
+  
+  
+function getLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      function(position){
+      console.log(position)
+      alert(`Latitude: ${position.coords.latitude}
+
+Longitude: ${position.coords.longitude}`)
+
+    }, 
+    function(error){
+      console.log(error);
+    })
+  } else {
+    alert(".error.")
+  }
+}
+
+
+</script>
+
+
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap 4 -->

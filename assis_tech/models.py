@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
+
 import os
 
 
@@ -42,7 +43,7 @@ def get_profile_image_filepath(self, filename):
 
 
 def get_default_profile_image():  # Caso a pessoa não coloque uma foto
-    return "img/AssisTech.png"
+    return "img/default-user.png"
 
 
 # Campos como is_admin, is_active, is_staff, is_superuser são obrigatorios para criar um model de usuario
@@ -102,7 +103,7 @@ class Relato(models.Model):
     cpf = models.CharField(max_length=14)
     telefone = models.CharField(max_length=20)
     email = models.CharField(max_length=100)
-    data_criacao = models.DateTimeField(default=timezone.now)
+    data_criacao = models.DateTimeField(null=True, default=timezone.now)
     descricao = models.TextField(blank=True)
     local = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, default=1)

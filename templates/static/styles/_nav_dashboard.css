@@ -107,14 +107,14 @@ a {
   }
   .shortcuts-div li { 
     padding: 10px 0;
-  
     position: relative; 
-    
     display: table-cell; 
   }
+
   .shortcuts-div li:nth-child(3) {
-    width: 220px !important;
+    width: 180px !important;
   }
+
   .shortcuts-div a {  
     text-decoration: none;
     letter-spacing: 0.15em;
@@ -127,22 +127,23 @@ a {
   }
   .shortcuts-div a:after {    
     bottom: 0;
-    
     width: 0;
     height: 2px;
-  
     background: none repeat scroll 0 0 transparent;
-    
     content: "";
     position: absolute;
-    
     background: #3cc88f;
-    
     display: block;
-    
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
 }
 .shortcuts-div a:hover:after { 
   width: 100%; 
   left: 0; 
 } 
+
+.account-image{
+  /* position: absolute; */
+  width: 60px !important;
+  height: 60px !important;
+  margin-top: -15px !important;
+}

@@ -76,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'AssisTech.wsgi.application'
 
-
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760 # 10mb = 10 * 1024 *1024
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -141,3 +141,4 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.ERROR: 'alert-danger',
 }
+
