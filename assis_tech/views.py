@@ -24,9 +24,11 @@ from .models import Account
 
 def index(request):
     # Create MAp
-    m = folium.Map(location=[-26.900420999510086, -49.08161133527756], zoom_start=15)
+    m = folium.Map(location=[-26.900420999510086, -
+                   49.08161133527756], zoom_start=15)
 
-    folium.Marker(location=[-26.900420999510086, -49.08161133527756], tooltop='clique para mais', popup='Centro POP').add_to(m)
+    folium.Marker(location=[-26.900420999510086, -49.08161133527756],
+                  tooltop='clique para mais', popup='Centro POP').add_to(m)
     # Get html representation of map
     m = m._repr_html_()
 
@@ -35,19 +37,18 @@ def index(request):
     }
     return render(request, 'pages/index.html', context)
 
+
 def registerPage(request):
     context = {}
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            messages.add_message(request, messages.SUCCESS,
-                                 'Usuário cadastrado com sucesso.')
+            messages.add_message(request, messages.SUCCESS, 'Usuário cadastrado com sucesso.')
             form.save()
         else:
-          messages.add_message(request, messages.ERROR, 'Falha ao Registrar Usuário.')   
+            messages.add_message(request, messages.ERROR,'Falha ao Registrar Usuário.')
 
-        messages.add_message(request, messages.ERROR,
-                             'Falha ao Registrar Usuário.')
+        messages.add_message(request, messages.ERROR,'Falha ao Registrar Usuário.')
 
     return render(request, 'pages/register.html', context)
 
@@ -57,7 +58,7 @@ def loginPage(request):
 
     user = request.user
     if user.is_authenticated:
-        return redirect('index')
+        return redirect('dashboard')
 
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
@@ -70,9 +71,10 @@ def loginPage(request):
                 login(request, user)
 
                 return redirect('dashboard')
-        messages.add_message(request, messages.ERROR, 'Email ou Senha Inválido.')
+        messages.add_message(request, messages.ERROR,
+                             'Email ou Senha Inválido.')
 
-                return redirect('index')
+        return redirect('index')
         messages.add_message(request, messages.ERROR,
                              'Email ou Senha Inválido.')
 
@@ -88,137 +90,87 @@ def logoutUser(request):
     return redirect('login')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 def account_view(request, *args, **kwargs):
-	"""
-	- Logic here is kind of tricky
-		is_self (boolean)
-			is_friend (boolean)
-				-1: NO_REQUEST_SENT
-				0: THEM_SENT_TO_YOU
-				1: YOU_SENT_TO_THEM
-	"""
-	context = {}
-	user_id = kwargs.get("user_id")
-	try:
-		account = Account.objects.get(pk=user_id)
-	except:
-		return HttpResponse("Something went wrong.")
-	if account:
-		context['id'] = account.id
-		context['username'] = account.username
-		context['email'] = account.email
-		context['profile_image'] = account.profile_image.url
-		context['hide_email'] = account.hide_email
+    """
+    - Logic here is kind of tricky
+            is_self (boolean)
+                    is_friend (boolean)
+                            -1: NO_REQUEST_SENT
+                            0: THEM_SENT_TO_YOU
+                            1: YOU_SENT_TO_THEM
+    """
+    context = {}
+    user_id = kwargs.get("user_id")
+    try:
+        account = Account.objects.get(pk=user_id)
+    except:
+        return HttpResponse("Something went wrong.")
+    if account:
+        context['id'] = account.id
+        context['username'] = account.username
+        context['email'] = account.email
+        context['profile_image'] = account.profile_image.url
+        context['hide_email'] = account.hide_email
 
-		# Define template variables
-		is_self = True
-		is_friend = False
-		user = request.user
-		if user.is_authenticated and user != account:
-			is_self = False
-		elif not user.is_authenticated:
-			is_self = False
-			
-		# Set the template variables to the values
-		context['is_self'] = is_self
-		context['is_friend'] = is_friend
-		return render(request, "pages/account.html", context)
+        # Define template variables
+        is_self = True
+        user = request.user
+        if user.is_authenticated and user != account:
+            is_self = False
+        elif not user.is_authenticated:
+            is_self = False
 
+        # Set the template variables to the values
+        context['is_self'] = is_self
+        return render(request, "pages/account.html", context)
 
 
 def edit_account_view(request, *args, **kwargs):
-	if not request.user.is_authenticated:
-		return redirect("login")
-	user_id = kwargs.get("user_id")
-	account = Account.objects.get(pk=user_id)
-	if account.pk != request.user.pk:
-		return HttpResponse("You cannot edit someone elses profile.")
-	context = {}
-	if request.POST:
-		form = AccountUpdateForm(request.POST, request.FILES, instance=request.user)
-		if form.is_valid():
-			form.save()
-			new_username = form.cleaned_data['username']
-			return redirect("account:view", user_id=account.pk)
-		else:
-			form = AccountUpdateForm(request.POST, instance=request.user,
-				initial={
-					"id": account.pk,
-					"email": account.email, 
-					"username": account.username,
-					"profile_image": account.profile_image,
-					"hide_email": account.hide_email,
-				}
-			)
-			context['form'] = form
-	else:
-		form = AccountUpdateForm(
-			initial={
-					"id": account.pk,
-					"email": account.email, 
-					"username": account.username,
-					"profile_image": account.profile_image,
-					"hide_email": account.hide_email,
-				}
-			)
-		context['form'] = form
-	context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
-	return render(request, "pages/edit_account.html", context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if not request.user.is_authenticated:
+        return redirect("login")
+    user_id = kwargs.get("user_id")
+    account = Account.objects.get(pk=user_id)
+    if account.pk != request.user.pk:
+        return HttpResponse("You cannot edit someone elses profile.")
+    context = {}
+    if request.POST:
+        form = AccountUpdateForm(
+            request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            new_username = form.cleaned_data['username']
+            return redirect("account:view", user_id=account.pk)
+        else:
+            form = AccountUpdateForm(request.POST, instance=request.user,
+                                     initial={
+                                         "id": account.pk,
+                                         "email": account.email,
+                                         "username": account.username,
+                                         "profile_image": account.profile_image,
+                                         "hide_email": account.hide_email,
+                                     }
+                                     )
+            context['form'] = form
+    else:
+        form = AccountUpdateForm(
+            initial={
+                "id": account.pk,
+                "email": account.email,
+                "username": account.username,
+                "profile_image": account.profile_image,
+                "hide_email": account.hide_email,
+            }
+        )
+        context['form'] = form
+    context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+    return render(request, "pages/edit_account.html", context)
 
 
 def report(request):
     data = {}
     data['form'] = RelatoForm()
     return render(request, 'pages/report.html', data)
+
 
 def create(request):
     if request.method == "POST":

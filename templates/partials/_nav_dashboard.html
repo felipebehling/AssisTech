@@ -53,7 +53,7 @@
             
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <a href="{% url 'account:view' user_id=request.user.id %}" class="dropdown-item">
+              <a href="{% url 'view' user_id=request.user.id %}" class="dropdown-item">
                 <!-- Message Start -->
                 <div class="media">
                   <img src="{{request.user.profile_image.url}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
@@ -70,7 +70,7 @@
                 <!-- Message End -->
               </a>
               <div class="dropdown-divider"></div>
-              <a href="{% url 'account:edit-profile' user_id=request.user.id %}" class="dropdown-item">
+              <a href="{% url 'edit-profile' user_id=request.user.id %}" class="dropdown-item">
                 <!-- Message Start -->
                 <div class="media">
                   <i class="fas fa-user-edit mr-3"></i>
@@ -85,6 +85,7 @@
                 <!-- Message End -->
               </a>
               <div class="dropdown-divider"></div>
+              <a href="{% url 'logout' %}" class="dropdown-item dropdown-footer">Logout</a>
                 <!-- Message Start -->
 
                 <!-- Message End -->

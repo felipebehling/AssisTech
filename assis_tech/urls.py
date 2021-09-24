@@ -1,12 +1,8 @@
 from django.urls import path
 from . import views
 
-from assis_tech.views import(
-  account_view,
-	edit_account_view, 
-)
+from assis_tech.views import *
 
-app_name = 'account'
 
 urlpatterns = [
   path('', views.index, name='index'),
