@@ -100,6 +100,22 @@
 <script>
   new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
   new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
+  
+  
+
+    const successCallback = (position) => {
+      console.log(position);
+      alert("\\\\\\")
+    }
+    
+    const errorCallback = (error) => {
+      console.error(error);
+      
+      alert("--  -  --")
+    }
+
+
+    navigator.geolocation.getCurrentData(successCallback, errorCallback)
 </script>
 
 <!-- jQuery -->
