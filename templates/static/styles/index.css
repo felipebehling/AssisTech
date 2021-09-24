@@ -658,6 +658,7 @@ input::placeholder {
 }
 
 .info {
+  margin-top: 75px;
   width: 40%;
 }
 
@@ -667,4 +668,8 @@ input::placeholder {
   font-weight: 300;
   font-family: 'Poppins', sans-serif;
   color: #25283a;
+}
+
+.contact i {
+  margin-right: 10px;
 }
