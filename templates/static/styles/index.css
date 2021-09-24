@@ -640,3 +640,31 @@ input::placeholder {
   opacity: 1;
   transition: all .3s linear;
 }
+
+.map-section {
+  padding: 50px;
+  background-color: #edf1f5;
+  border-top: 2px solid #3cc88f;
+}
+
+.map-holder {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 100px;
+}
+
+.map {
+  width: 40%;
+}
+
+.info {
+  width: 40%;
+}
+
+.info p {
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+  color: #25283a;
+}
