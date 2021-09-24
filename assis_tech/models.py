@@ -103,7 +103,7 @@ class Relato(models.Model):
     cpf = models.CharField(max_length=14)
     telefone = models.CharField(max_length=20)
     email = models.CharField(max_length=100)
-    data_criacao = models.DateTimeField(default=timezone.now)
+    data_criacao = models.DateTimeField(null=True, default=timezone.now)
     descricao = models.TextField(blank=True)
     local = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, default=1)
