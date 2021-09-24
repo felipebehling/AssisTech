@@ -11,11 +11,14 @@ app_name = 'account'
 urlpatterns = [
   path('', views.index, name='index'),
   path('report/', views.report, name='report'),
+  path('relato_create/', views.relato_create, name='relato_create'),
+
   path('register/', views.registerPage, name="register"),
   path('login/', views.loginPage, name="login"),
   path('logout/', views.logoutUser, name="logout"),
   path('dashboard/<user_id>/', account_view, name="view"),
 	path('dashboard/<user_id>/edit/', edit_account_view, name="edit-profile"),
+  
   path('dashboard/', views.dashboard, name='dashboard'),
   path('dashboard/detalhe/<int:pk>/', views.detail, name='detail'),
   path('dashboard/editar/<int:pk>/', views.edit, name='edit'),

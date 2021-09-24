@@ -68,7 +68,7 @@ class AccountUpdateForm(forms.ModelForm):
 class relato_form(ModelForm):
     class Meta:
         model = Relato
-        fields = ['id', 'nome', 'cpf', 'telefone', 'email', 'data_criacao', 'descricao', 'local', 'categoria']
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(relato_form, self).__init__(*args, **kwargs)
