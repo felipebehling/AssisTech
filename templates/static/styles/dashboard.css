@@ -22,3 +22,8 @@ a{
 .nav-pag{
     margin-left: 550px;
 }
+
+.table tbody{
+    align-items: center;
+    font-size: 16.5px;
+}

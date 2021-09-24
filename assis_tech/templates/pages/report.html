@@ -30,7 +30,7 @@
     <div class="card-body">
       <p class="login-box-msg"><b>Informações Pessoais</b></p>
 
-      <form action="/relato_create/" method="POST">
+      <form action="/create/" method="POST">
         {% csrf_token %}
         
         <div class="input-group mb-3">
@@ -83,6 +83,7 @@
           <label>Descrição</label>
           {% render_field form.descricao name="descricao" %}
         </div>
+        {% render_field form.data_criacao name="data_criacao" class="d-none" %}
         {% render_field form.categoria name="categoria" class="d-none" %}
         <div class="row">
           <div class="col-6 m-auto">
@@ -96,12 +97,6 @@
 </div>
 
 <script src="{% static 'scripts/masks.js' %}"></script>
-
-<script>
-  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
-  new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
-</script>
-
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap 4 -->
