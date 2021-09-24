@@ -8,7 +8,7 @@ from assis_tech.form import CreateUserForm, AccountAuthenticationForm, AccountUp
 from django.contrib.auth import authenticate, login, logout
 import folium
 
-from .form import relato_form
+from .form import RelatoForm
 from .models import Relato
 from django.core.paginator import Paginator
 from .filters import RelatoFilter
@@ -217,18 +217,15 @@ def edit_account_view(request, *args, **kwargs):
 
 def report(request):
     data = {}
-    data['form'] = relato_form()
+    data['form'] = RelatoForm()
     return render(request, 'pages/report.html', data)
 
-
-def relato_create(request):
-    form = relato_form(request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect('index')
-    else:
-        print("- - - - - ")
-        print(request.POST)
+def create(request):
+    if request.method == "POST":
+        form = RelatoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
 
 
 def dashboard(request):
@@ -249,13 +246,13 @@ def detail(request, pk):
 
 def edit(request, pk):
     relato = Relato.objects.get(pk=pk)
-    form = relato_form(instance=relato)
+    form = RelatoForm(instance=relato)
     return render(request, 'pages/edit.html', {'relato': relato, 'form': form})
 
 
 def update(request, pk):
     relato = Relato.objects.get(pk=pk)
-    form = relato_form(request.POST, instance=relato)
+    form = RelatoForm(request.POST, instance=relato)
     if form.is_valid():
         form.save()
         return redirect('dashboard')
