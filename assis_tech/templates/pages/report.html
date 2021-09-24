@@ -30,7 +30,7 @@
     <div class="card-body">
       <p class="login-box-msg"><b>Informações Pessoais</b></p>
 
-      <form action="/report/relato_create/" method="POST">
+      <form action="/create/" method="POST">
         {% csrf_token %}
         
         <div class="input-group mb-3">
@@ -86,7 +86,11 @@
           <label>Descrição</label>
           {% render_field form.descricao name="descricao" placeholder="Características do morador de rua, pontos de referência, etc..." %}
         </div>
-        {% render_field form.categoria name="categoria" class="d-none"%}
+
+        {% render_field form.data_criacao name="data_criacao" class="d-none" %}
+        {% render_field form.categoria name="categoria" class="d-none" %}
+
+
         <div class="row">
           <div class="col-6 m-auto">
             <button type="submit" class="btn btn-success btn-block">Relatar</button>
@@ -104,6 +108,8 @@
 </div>
 
 <script src="{% static 'scripts/masks.js' %}"></script>
+
+
 
 <script>
 
@@ -131,6 +137,7 @@ Longitude: ${position.coords.longitude}`)
 
 
 </script>
+
 
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>

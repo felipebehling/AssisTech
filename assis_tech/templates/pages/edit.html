@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{% static 'styles/_nav_dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'styles/detalhe.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/dist/css/adminlte.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
     <title>Dashboard</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
     <div>
       <div class="card w-75">
         <div class="card-head">
-          <h3 class="card-title">Informaçãoes do Relato {{relato.id}}</h3>
+            <h1 class="card-title">Informaçãoes do Relato {{relato.id}}</h1>
         </div>
         <div class="card-body dark">
             <form action="/dashboard/atualizar/{{relato.id}}/" method="POST">
@@ -33,7 +33,7 @@
                              <i class="fas fa-user mr-2"></i>Nome
                         </span>
                     </div>
-                    {% render_field form.nome %}
+                    {% render_field form.nome readonly="on" %}
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -41,7 +41,7 @@
                             <i class="fas fa-address-card mr-2"></i>CPF
                         </span>
                     </div>
-                    {% render_field form.cpf max_length='14' %}
+                    {% render_field form.cpf readonly="on" %}
                 </div>
             
                 <div class="input-group mb-3">
@@ -50,7 +50,7 @@
                             <i class="fas fa-phone mr-2"></i>Telefone
                         </span>
                     </div>
-                    {{form.telefone}}
+                    {% render_field form.telefone readonly="on" %}
                 </div>
             
                 <div class="input-group mb-3">
@@ -59,7 +59,7 @@
                             <i class="fas fa-envelope mr-2"></i>Email
                         </span>
                     </div>
-                    {{form.email}}
+                    {% render_field form.email readonly="on" %}
                 </div>
             
                 <div class="input-group mb-3">
@@ -68,7 +68,7 @@
                             <i class="fas fa-calendar-alt mr-2"></i>Data de criação
                         </span>
                     </div>
-                    {{form.data_criacao}}
+                    {% render_field form.data_criacao readonly="on" %}
                 </div>
             
                 <div class="input-group mb-3">
@@ -77,7 +77,7 @@
                             <i class="fas fa-tags mr-2"></i>Categoria
                         </span>
                     </div>
-                    {{form.categoria}}
+                    {% render_field form.categoria %}
                 </div>
             
                 <div class="input-group mb-3">
@@ -86,7 +86,7 @@
                             <i class="fas fa-map-marker-alt mr-2"></i>Local
                         </span>
                     </div>
-                    {{form.local}}
+                    {% render_field form.local readonly="on"%}
                 </div>
 
                 <div class="input-group">
@@ -95,11 +95,11 @@
                             <i class="fas fa-comment-dots mr-2"></i>Descrição
                         </span>
                     </div>
-                    {{form.descricao}}
+                    {% render_field form.descricao rows="5" readonly="on" %}
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-success">Salvar</button>
-                    <a href="{% url 'dashboard' %}" class="btn btn-danger float-right">Cancelar</a>
+                    <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancelar</a>
+                    <button type="submit" class="btn btn-success float-right">Salvar</button>
                 </div>
             </form>
         </div>

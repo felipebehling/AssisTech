@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{% static 'styles/_nav_dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'styles/detalhe.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE-3.1.0/dist/css/adminlte.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
     <title>Dashboard</title>
 </head>
 <body>
@@ -93,6 +93,10 @@
               </span>
             </div>
             <input type="text" class="form-control" placeholder="{{relato.descricao}}" disabled>
+          </div>
+          <div class="card-footer">
+            <a href="{% url 'dashboard' %}" class="btn btn-danger">Voltar</a>
+            <a href="/dashboard/editar/{{relato.id}}"class="btn btn-success float-right">Editar</a>
           </div>
         </div>
 </body>

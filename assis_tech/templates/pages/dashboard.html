@@ -21,15 +21,15 @@
         <div class="row d-flex">
           <div class="col">
             <form method="get" class="form-inline">
-              <div class="form-group mb-2">
+              <div class="form-group mb-2 d-block">
                 <label for="nome">Nome</label>
                 {{myFilter.form.nome}}
               </div>
-              <div class="form-group mb-2">
+              <div class="form-group mb-2 d-block">
                 <label for="cpf">CPF</label>
                 {{myFilter.form.cpf}}
               </div>
-              <div class="form-group mb-2">
+              <div class="form-group mb-2 d-block">
                 <label for="categoria">Categoria</label>
                 {{myFilter.form.categoria}}
               </div>
@@ -77,13 +77,13 @@
                 <td>{{ relato.categoria }}</td>
                 <td>
                   <a href="detalhe/{{ relato.id }}/" class="btn btn-outline-secondary">
-                    <i class="bi bi-search"></i>
+                    <i class="fas fa-search"></i>
                   </a>
                   <a href="editar/{{ relato.id }}/" class="btn btn-outline-primary">
-                    <i class="bi bi-pencil-square"></i>
+                    <i class="fas fa-edit"></i>
                   </a>
                   <a href="deletar/{{ relato.id }}/" class="btn btn-outline-danger">
-                    <i class="bi bi-trash-fill"></i>
+                    <i class="fas fa-trash-alt"></i>
                   </a>
                 </td>
               </tr>
@@ -105,6 +105,8 @@
       <script src="{% static 'vendor/AdminLTE/plugins/jquery-mapael/maps/usa_states.min.js' %}"></script>
       <script src="{% static 'vendor/AdminLTE/plugins/chart.js/Chart.min.js' %}"></script>
       <script src="{% static 'vendor/AdminLTE/dist/js/demo.js' %}"></script>
-    <script src="{% static 'vendor/AdminLTE/dist/js/script>
+
+      <script src="{% static 'vendor/AdminLTE/dist/js/script>' %}"></script>
+
 </body>
 </html>
