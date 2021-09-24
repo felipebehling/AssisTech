@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
-from assis_tech.form import CreateUserForm, AccountAuthenticationForm
+from assis_tech.form import CreateUserForm, AccountAuthenticationForm, AccountUpdateForm
 from django.contrib.auth import authenticate, login, logout
 import folium
 
@@ -15,6 +15,9 @@ from .filters import RelatoFilter
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.conf import settings
+from .models import Account
 
 # Create your views here.
 
@@ -40,6 +43,9 @@ def registerPage(request):
             messages.add_message(request, messages.SUCCESS,
                                  'Usuário cadastrado com sucesso.')
             form.save()
+        else:
+          messages.add_message(request, messages.ERROR, 'Falha ao Registrar Usuário.')   
+
         messages.add_message(request, messages.ERROR,
                              'Falha ao Registrar Usuário.')
 
@@ -62,9 +68,14 @@ def loginPage(request):
 
             if user:
                 login(request, user)
+
+                return redirect('dashboard')
+        messages.add_message(request, messages.ERROR, 'Email ou Senha Inválido.')
+
                 return redirect('index')
         messages.add_message(request, messages.ERROR,
                              'Email ou Senha Inválido.')
+
     else:
         form = AccountAuthenticationForm()
 
@@ -75,6 +86,133 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+def account_view(request, *args, **kwargs):
+	"""
+	- Logic here is kind of tricky
+		is_self (boolean)
+			is_friend (boolean)
+				-1: NO_REQUEST_SENT
+				0: THEM_SENT_TO_YOU
+				1: YOU_SENT_TO_THEM
+	"""
+	context = {}
+	user_id = kwargs.get("user_id")
+	try:
+		account = Account.objects.get(pk=user_id)
+	except:
+		return HttpResponse("Something went wrong.")
+	if account:
+		context['id'] = account.id
+		context['username'] = account.username
+		context['email'] = account.email
+		context['profile_image'] = account.profile_image.url
+		context['hide_email'] = account.hide_email
+
+		# Define template variables
+		is_self = True
+		is_friend = False
+		user = request.user
+		if user.is_authenticated and user != account:
+			is_self = False
+		elif not user.is_authenticated:
+			is_self = False
+			
+		# Set the template variables to the values
+		context['is_self'] = is_self
+		context['is_friend'] = is_friend
+		return render(request, "pages/account.html", context)
+
+
+
+def edit_account_view(request, *args, **kwargs):
+	if not request.user.is_authenticated:
+		return redirect("login")
+	user_id = kwargs.get("user_id")
+	account = Account.objects.get(pk=user_id)
+	if account.pk != request.user.pk:
+		return HttpResponse("You cannot edit someone elses profile.")
+	context = {}
+	if request.POST:
+		form = AccountUpdateForm(request.POST, request.FILES, instance=request.user)
+		if form.is_valid():
+			form.save()
+			new_username = form.cleaned_data['username']
+			return redirect("account:view", user_id=account.pk)
+		else:
+			form = AccountUpdateForm(request.POST, instance=request.user,
+				initial={
+					"id": account.pk,
+					"email": account.email, 
+					"username": account.username,
+					"profile_image": account.profile_image,
+					"hide_email": account.hide_email,
+				}
+			)
+			context['form'] = form
+	else:
+		form = AccountUpdateForm(
+			initial={
+					"id": account.pk,
+					"email": account.email, 
+					"username": account.username,
+					"profile_image": account.profile_image,
+					"hide_email": account.hide_email,
+				}
+			)
+		context['form'] = form
+	context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+	return render(request, "pages/edit_account.html", context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def report(request):
