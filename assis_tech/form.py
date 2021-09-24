@@ -65,14 +65,13 @@ class AccountUpdateForm(forms.ModelForm):
 
 
 
-class relato_form(ModelForm):
+class RelatoForm(ModelForm):
     class Meta:
         model = Relato
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super(relato_form, self).__init__(*args, **kwargs)
+        fields = ['nome', 'cpf', 'telefone', 'email', 'data_criacao', 'descricao', 'local', 'categoria']
         
+    def __init__(self, *args, **kwargs):
+        super(RelatoForm, self).__init__(*args, **kwargs)
         for field in self.fields:
-            self.fields[field].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
+            self.fields[field]. widget.attrs.update({'class': 'form-control'})
 
