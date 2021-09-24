@@ -11,7 +11,7 @@ app_name = 'account'
 urlpatterns = [
   path('', views.index, name='index'),
   path('report/', views.report, name='report'),
-  path('relato_create/', views.relato_create, name='relato_create'),
+  path('create/', views.create, name='create'),
 
   path('register/', views.registerPage, name="register"),
   path('login/', views.loginPage, name="login"),
