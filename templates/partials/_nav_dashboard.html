@@ -9,16 +9,18 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
     <link rel="stylesheet" href="{% static 'styles/_nav_dashboard.css' %}">
+    <!-- Cropperjs -->
+    <link rel="stylesheet" href="{% static 'vendor/cropperjs/dist/cropper.min.css' %}">
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-primary navbar-dark">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="../../index3.html" class="nav-link">Home</a>
+            <a href="{ url 'dashboard' %}" class="nav-link">Home</a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Registrar</a>
+            <a href="{ url '/register' %}" class="nav-link">Registrar</a>
           </li>
         </ul>
 
@@ -131,6 +133,29 @@
           </li>
         </ul>
       </nav>
+      <div class="container" id="id_loading_spinner" style="display: none">
+        <div class="d-flex flex-row mx-auto flex-grow-1 justify-content-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
 </body>
+
+<script type="" src="{% static 'vendor/cropperjs/dist/cropper.min.js' %}"></script>
+
+<script type="text/javascript">
+	function displayLoadingSpinner(isDisplayed){
+		var spinner = document.getElementById("id_loading_spinner")
+		if(isDisplayed){
+			spinner.style.display = "block"
+		}
+		else{
+			spinner.style.display = "none"
+		}
+	}
+</script>
 </html>
+
+
 
