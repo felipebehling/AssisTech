@@ -56,7 +56,6 @@ def registerPage(request):
         else:
             messages.add_message(request, messages.ERROR,'Falha ao Registrar Usuário.')
 
-        messages.add_message(request, messages.ERROR,'Falha ao Registrar Usuário.')
 
     return render(request, 'pages/register.html', context)
 
@@ -122,7 +121,7 @@ def account_view(request, *args, **kwargs):
 
         # Set the template variables to the values
         context['is_self'] = is_self
-        return render(request, "pages/dashboard.html", context)
+        return render(request, "pages/account.html", context)
 
 
 def edit_account_view(request, *args, **kwargs):
@@ -137,7 +136,6 @@ def edit_account_view(request, *args, **kwargs):
         form = AccountUpdateForm(
             request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            account.profile_image.delete()
             form.save()
             return redirect("view", user_id=account.pk)
         else:
@@ -191,50 +189,45 @@ def save_temp_profile_image_from_base64String(imageString, user):
 
 
 def crop_image(request, *args, **kwargs):
-	payload = {}
-	user = request.user
-	if request.POST and user.is_authenticated:
-		try:
-			imageString = request.POST.get("image")
-			url = save_temp_profile_image_from_base64String(imageString, user)
-			img = cv2.imread(url)
+    payload = {}
+    user = request.user
+    print('-----ÓÓ----')
+    if request.POST and user.is_authenticated:
+        try:
+            imageString = request.POST.get("image")
+            url = save_temp_profile_image_from_base64String(imageString, user)
+            img = cv2.imread(url)
 
-			cropX = int(float(str(request.POST.get("cropX"))))
-			cropY = int(float(str(request.POST.get("cropY"))))
-			cropWidth = int(float(str(request.POST.get("cropWidth"))))
-			cropHeight = int(float(str(request.POST.get("cropHeight"))))
-			if cropX < 0:
-				cropX = 0
-			if cropY < 0: # There is a bug with cropperjs. y can be negative.
-				cropY = 0
-			crop_img = img[cropY:cropY+cropHeight, cropX:cropX+cropWidth]
+            cropX = int(float(str(request.POST.get("cropX"))))
+            cropY = int(float(str(request.POST.get("cropY"))))
+            cropWidth = int(float(str(request.POST.get("cropWidth"))))
+            cropHeight = int(float(str(request.POST.get("cropHeight"))))
+            if cropX < 0:
+                cropX = 0
+            if cropY < 0: # There is a bug with cropperjs. y can be negative.
+                cropY = 0
+            crop_img = img[cropY:cropY+cropHeight, cropX:cropX+cropWidth]
 
-			cv2.imwrite(url, crop_img)
+            cv2.imwrite(url, crop_img)
 
-			# delete the old image
-			user.profile_image.delete()
+            # delete the old image
+            user.profile_image.delete()
 
-			# Save the cropped image to user model
-			user.profile_image.save("profile_image.png", files.File(open(url, 'rb')))
-			user.save()
+            # Save the cropped image to user model
+            user.profile_image.save("profile_image.png", files.File(open(url, 'rb')))
+            user.save()
 
-			payload['result'] = "success"
-			payload['cropped_profile_image'] = user.profile_image.url
+            payload['result'] = "success"
+            payload['cropped_profile_image'] = user.profile_image.url
 
-			# delete temp file
-			os.remove(url)	
-		except Exception as e:
-			print("exception: " + str(e))
-			payload['result'] = "error"
-			payload['exception'] = str(e)
-	return HttpResponse(json.dumps(payload), content_type="application/json")
-
-
-
-
-
-
-
+            # delete temp file
+            os.remove(url)	
+        except Exception as e:
+            print("exception: " + str(e))
+            payload['result'] = "error"
+            payload['exception'] = str(e)
+	
+    return HttpResponse(json.dumps(payload), content_type="application/json")
 
 def report(request):
     data = {}
