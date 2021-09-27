@@ -32,8 +32,7 @@ TEMP_PROFILE_IMAGE_NAME = "temp_profile_image.png"
 
 def index(request):
     # Create MAp
-    m = folium.Map(location=[-26.900420999510086, -
-                   49.08161133527756], zoom_start=15)
+    m = folium.Map(location=[-26.900420999510086, -49.08161133527756], zoom_start=15)
 
     folium.Marker(location=[-26.900420999510086, -49.08161133527756],
                   tooltop='clique para mais', popup='Centro POP').add_to(m)
@@ -82,9 +81,7 @@ def loginPage(request):
                              'Email ou Senha Inválido.')
 
         return redirect('login')
-        messages.add_message(request, messages.ERROR,
-                             'Email ou Senha Inválido.')
-
+      
     else:
         form = AccountAuthenticationForm()
 
@@ -230,8 +227,20 @@ def crop_image(request, *args, **kwargs):
     return HttpResponse(json.dumps(payload), content_type="application/json")
 
 def report(request):
+    print(request.GET)
     data = {}
     data['form'] = RelatoForm()
+
+    # Create MAp
+    m = folium.Map(location=[-26.900420999510086, -49.08161133527756], zoom_start=15)
+
+    folium.Marker(location=[-26.900420999510086, -49.08161133527756],
+                  tooltop='clique para mais', popup='Centro POP').add_to(m)
+    # Get html representation of map
+    m = m._repr_html_()
+
+    data['map'] = m
+
     return render(request, 'pages/report.html', data)
 
 
