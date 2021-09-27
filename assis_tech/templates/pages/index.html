@@ -99,7 +99,7 @@
       </div>
         <div class="inputs">
             <div class="input-number">
-                <i class="fas fa-credit-card"></i><input type="number" placeholder="Número do cartão">
+                <i class="fas fa-credit-card"></i><input type="number" placeholder="Número do cartão" id="inputCard">
             </div>
             <div class="input-cvv">
                 <input type="number" placeholder="CVV">
@@ -141,7 +141,7 @@
             </div>
             <div class="input-data">
                 <input type="text" placeholder="Nome do titular do cartão">
-                <input type="number" placeholder="CPF">
+                <input type="tel" name='cpf' placeholder="CPF" id="cpf" autocomplete="off">
             </div>
             <div class="button">
                 <button type="submit">CONTINUAR</button>
@@ -149,8 +149,23 @@
         </div>
       </div>
 
-      <div>
-
+      <div class="pagamento-pix test2" id="test2">
+        <div class="title-pix">
+          <h2>PIX</h2>
+          <i class="bi bi-x" id="buttonClose2" onclick="closeX2()" ></i>
+        </div>
+        <div class="select-amount">
+          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-one"><label for="radio-one">R$ 10</label></div>
+          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-two"><label for="radio-two">R$ 20</label></div>
+          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-three"><label for="radio-three">R$ 50</label></div>
+          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-four"><label for="radio-four">R$ 100</label></div>
+        </div>
+        <div class="inputvalue">
+          <input type="number" placeholder="ou informe um valor" class="inputvalue-pix">
+        </div>
+        <div class="button-pix">
+          <button>CONTINUAR</button>
+        </div>
       </div>
 
       <div class="donate" id="donate">
@@ -160,17 +175,13 @@
             <i class="far fa-credit-card"></i>
             <p>Cartão de Crédito</p>
           </button>
-          <button class="btn pix"><img src="{% static 'img/pix.png' %}" alt="">
+          <button class="btn pix" onclick="move2(), pix()"><img src="{% static 'img/pix.png' %}" alt="">
             <p>PIX</p>
           </button>
           <button class="btn boleto"><i class="fas fa-barcode"></i>
             <p>Boleto</p>
           </button>
         </div>
-      </div>
-
-      <div>
-
       </div>
 
     </section>
@@ -210,10 +221,17 @@
     </footer>
   </div>
 
+<script src="{% static 'scripts/masks.js' %}"></script>
+
+<script>
+  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
+</script>
+
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <script src="{% static 'scripts/index.js' %}"></script>
+
 </body>
 
 </html>
