@@ -16,24 +16,24 @@
 <body>
   {% include 'partials/_nav_dashboard.html' %}
   
-    <div class="table-container card">
+    <div class="table-container card mx-auto">
       <div class="card-header clearfix d-flex">
         <div class="row d-flex">
           <div class="col">
             <form method="get" class="form-inline">
-              <div class="form-group mb-2 d-block">
+              <div class="form-group mb-2 d-block mr-3">
                 <label for="nome">Nome</label>
                 {{myFilter.form.nome}}
               </div>
-              <div class="form-group mb-2 d-block">
+              <div class="form-group mb-2 d-block mr-3">
                 <label for="cpf">CPF</label>
                 {{myFilter.form.cpf}}
               </div>
-              <div class="form-group mb-2 d-block">
+              <div class="form-group mb-2 d-block mr-3">
                 <label for="categoria">Categoria</label>
                 {{myFilter.form.categoria}}
               </div>
-              <button class="btn btn-primary" type="submit">Pesquisar</button>
+              <button class="btn btn-primary mt-2" type="submit">Pesquisar</button>
             </form>
           </div>
         </div>
