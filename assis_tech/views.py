@@ -24,8 +24,7 @@ from .models import Account
 
 def index(request):
     # Create MAp
-    m = folium.Map(location=[-26.900420999510086, -
-                   49.08161133527756], zoom_start=15)
+    m = folium.Map(location=[-26.900420999510086, -49.08161133527756], zoom_start=15)
 
     folium.Marker(location=[-26.900420999510086, -49.08161133527756],
                   tooltop='clique para mais', popup='Centro POP').add_to(m)
@@ -48,7 +47,6 @@ def registerPage(request):
         else:
             messages.add_message(request, messages.ERROR,'Falha ao Registrar Usuário.')
 
-        messages.add_message(request, messages.ERROR,'Falha ao Registrar Usuário.')
 
     return render(request, 'pages/register.html', context)
 
@@ -74,9 +72,7 @@ def loginPage(request):
         messages.add_message(request, messages.ERROR,
                              'Email ou Senha Inválido.')
 
-        return redirect('index')
-        messages.add_message(request, messages.ERROR,
-                             'Email ou Senha Inválido.')
+        return redirect('login')
 
     else:
         form = AccountAuthenticationForm()
@@ -167,8 +163,20 @@ def edit_account_view(request, *args, **kwargs):
 
 
 def report(request):
+    print(request.GET)
     data = {}
     data['form'] = RelatoForm()
+
+    # Create MAp
+    m = folium.Map(location=[-26.900420999510086, -49.08161133527756], zoom_start=15)
+
+    folium.Marker(location=[-26.900420999510086, -49.08161133527756],
+                  tooltop='clique para mais', popup='Centro POP').add_to(m)
+    # Get html representation of map
+    m = m._repr_html_()
+
+    data['map'] = m
+
     return render(request, 'pages/report.html', data)
 
 

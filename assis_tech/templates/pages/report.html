@@ -81,7 +81,6 @@
           </div>
         </div>
 
-
         <div class="form-group mb-3">
           <label>Descrição</label>
           {% render_field form.descricao name="descricao" placeholder="Características do morador de rua, pontos de referência, etc..." %}
@@ -97,11 +96,12 @@
           </div>
         </div>
 
+        <!-- <div class="map">
+          {{map | safe}}
+        </div> -->
+        
       </form>
 
-      <div>
-        {{m | safe}}
-      </div>
 
     </div>
   </div>
@@ -116,7 +116,10 @@
   new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
   new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
   
-  
+
+
+
+
 function getLocation() {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
@@ -145,5 +148,10 @@ Longitude: ${position.coords.longitude}`)
 <script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
+
+
+<!-- GoogleMaps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIenWSanVczJsy8QBmVm5FDvwH1E4fOfQ&callback=initMap"></script>
+
 </body>
 </html>
