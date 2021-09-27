@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,25 +16,40 @@
 </head>
 <body>
   {% include 'partials/_nav_dashboard.html' %}
-  
-    <div class="table-container card">
-      <div class="card-header clearfix d-flex">
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert {{message.tags}} alert-dismissible fade show w-25 ml-2" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+  {% endif %}
+    <div class="table-container card mt-5 mx-auto ">
+      <div class="card-header clearfix d-flex pb-0">
         <div class="row d-flex">
           <div class="col">
             <form method="get" class="form-inline">
-              <div class="form-group mb-2 d-block">
-                <label for="nome">Nome</label>
-                {{myFilter.form.nome}}
+              <div class="form-group d-block p-1 filters mx-1">
+                {% render_field myFilter.form.nome placeholder="Nome" class="filters-input" autocomplete="off" %}
+                {% if myFilter.form.nome.value != "" %}
+                  <span><i class="fas fa-times-circle"></i></span>
+                {% endif %}                
               </div>
-              <div class="form-group mb-2 d-block">
-                <label for="cpf">CPF</label>
-                {{myFilter.form.cpf}}
+              <div class="form-group d-block p-1 filters mx-1">
+                {% render_field myFilter.form.cpf placeholder="CPF" class="filters-input" autocomplete="off" %}
+                {% if myFilter.form.cpf.value != "" %}
+                  <span><i class="fas fa-times-circle"></i></span>
+                {% endif %}
               </div>
-              <div class="form-group mb-2 d-block">
-                <label for="categoria">Categoria</label>
-                {{myFilter.form.categoria}}
+              <div class="form-group d-block p-1 filters mx-1">
+                {% render_field myFilter.form.categoria class="filters-input" %}
+                {% if myFilter.form.categoria.value != "" %}
+                  <span><i class="fas fa-times-circle"></i></span>
+                {% endif %}
               </div>
-              <button class="btn btn-primary" type="submit">Pesquisar</button>
+              <button class="btn btn-primary ml-2" type="submit">Pesquisar</button>
             </form>
           </div>
         </div>
@@ -75,7 +91,7 @@
                 <td>{{ relato.cpf }}</td>
                 <td>{{ relato.data_criacao }}</td>
                 <td>{{ relato.categoria }}</td>
-                <td>
+                <td class="py-sm-3">
                   <a href="detalhe/{{ relato.id }}/" class="btn btn-outline-secondary">
                     <i class="fas fa-search"></i>
                   </a>
@@ -107,6 +123,5 @@
       <script src="{% static 'vendor/AdminLTE/dist/js/demo.js' %}"></script>
 
       <script src="{% static 'vendor/AdminLTE/dist/js/script>' %}"></script>
-
 </body>
 </html>
