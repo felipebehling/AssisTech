@@ -1,4 +1,3 @@
-
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -15,35 +14,33 @@ import os
 from django.core.files.storage import FileSystemStorage
 from django.core.files.storage import default_storage
 from django.core import files
+
 from .form import RelatoForm
 from .models import Relato
 from django.core.paginator import Paginator
 from .filters import RelatoFilter
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.conf import settings
 from .models import Account
 
+
+TEMP_PROFILE_IMAGE_NAME = "temp_profile_image.png"
 # Create your views here.
 
 
 def index(request):
     # Create MAp
     m = folium.Map(location=[-26.900420999510086, -49.08161133527756], zoom_start=15)
-
     folium.Marker(location=[-26.900420999510086, -49.08161133527756],
                   tooltop='clique para mais', popup='Centro POP').add_to(m)
     # Get html representation of map
     m = m._repr_html_()
-
     context = {
         'm': m,
     }
     return render(request, 'pages/index.html', context)
-
-
 def registerPage(request):
     context = {}
     if request.method == "POST":
@@ -53,41 +50,32 @@ def registerPage(request):
             form.save()
         else:
             messages.add_message(request, messages.ERROR,'Falha ao Registrar Usuário.')
-
-
     return render(request, 'pages/register.html', context)
-
-
 def loginPage(request):
     context = {}
-
     user = request.user
     if user.is_authenticated:
         return redirect('dashboard')
-
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
             email = request.POST['email']
             password = request.POST['password']
             user = authenticate(email=email, password=password)
-
             if user:
                 login(request, user)
-
                 return redirect('dashboard')
         messages.add_message(request, messages.ERROR,
                              'Email ou Senha Inválido.')
 
         return redirect('login')
+      
 
     else:
         form = AccountAuthenticationForm()
 
     context['login_form'] = form
     return render(request, 'pages/login.html', context)
-
-
 def logoutUser(request):
     logout(request)
     return redirect('login')
@@ -114,7 +102,6 @@ def account_view(request, *args, **kwargs):
         context['email'] = account.email
         context['profile_image'] = account.profile_image.url
         context['hide_email'] = account.hide_email
-
         # Define template variables
         is_self = True
         user = request.user
@@ -122,12 +109,9 @@ def account_view(request, *args, **kwargs):
             is_self = False
         elif not user.is_authenticated:
             is_self = False
-
         # Set the template variables to the values
         context['is_self'] = is_self
         return render(request, "pages/account.html", context)
-
-
 def edit_account_view(request, *args, **kwargs):
     if not request.user.is_authenticated:
         return redirect("login")
@@ -141,6 +125,7 @@ def edit_account_view(request, *args, **kwargs):
             request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
+            return redirect("view", user_id=account.pk)
             new_username = form.cleaned_data['username']
             return redirect("account:view", user_id=account.pk)
         else:
@@ -169,6 +154,7 @@ def edit_account_view(request, *args, **kwargs):
     return render(request, "pages/edit_account.html", context)
 
 
+
 def save_temp_profile_image_from_base64String(imageString, user):
 	INCORRECT_PADDING_EXCEPTION = "Incorrect padding"
 	try:
@@ -190,7 +176,6 @@ def save_temp_profile_image_from_base64String(imageString, user):
 			imageString += "=" * ((4 - len(imageString) % 4) % 4)
 			return save_temp_profile_image_from_base64String(imageString, user)
 	return None
-
 
 
 def crop_image(request, *args, **kwargs):
@@ -231,66 +216,48 @@ def crop_image(request, *args, **kwargs):
             print("exception: " + str(e))
             payload['result'] = "error"
             payload['exception'] = str(e)
-	
-    return HttpResponse(json.dumps(payload), content_type="application/json")
 
+    return HttpResponse(json.dumps(payload), content_type="application/json")
 
 def report(request):
     print(request.GET)
     data = {}
     data['form'] = RelatoForm()
-
     # Create MAp
     m = folium.Map(location=[-26.900420999510086, -49.08161133527756], zoom_start=15)
-
     folium.Marker(location=[-26.900420999510086, -49.08161133527756],
                   tooltop='clique para mais', popup='Centro POP').add_to(m)
     # Get html representation of map
     m = m._repr_html_()
-
     data['map'] = m
-
     return render(request, 'pages/report.html', data)
-
-
 def create(request):
     if request.method == "POST":
         form = RelatoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('index')
-
-
 def dashboard(request):
     list_relatos = Relato.objects.order_by('id')
     myFilter = RelatoFilter(request.GET, queryset=list_relatos)
     list_relatos = myFilter.qs
-
     paginator = Paginator(list_relatos, 10)
     page = request.GET.get('page')
     list_relatos = paginator.get_page(page)
     return render(request, 'pages/dashboard.html', {'relatos': list_relatos, 'myFilter': myFilter})
-
-
 def detail(request, pk):
     relato = Relato.objects.get(pk=pk)
     return render(request, 'pages/detalhe.html', {'relato': relato})
-
-
 def edit(request, pk):
     relato = Relato.objects.get(pk=pk)
     form = RelatoForm(instance=relato)
     return render(request, 'pages/edit.html', {'relato': relato, 'form': form})
-
-
 def update(request, pk):
     relato = Relato.objects.get(pk=pk)
     form = RelatoForm(request.POST, instance=relato)
     if form.is_valid():
         form.save()
         return redirect('dashboard')
-
-
 def delete(request, pk):
     relato = Relato.objects.get(pk=pk)
     relato.delete()
