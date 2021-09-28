@@ -161,6 +161,46 @@ def edit_account_view(request, *args, **kwargs):
     context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
     return render(request, "pages/edit_account.html", context)
 
+def crop_image(request, *args, **kwargs):
+    payload = {}
+    user = request.user
+    print('-----ÓÓ----')
+    if request.POST and user.is_authenticated:
+        try:
+            imageString = request.POST.get("image")
+            url = save_temp_profile_image_from_base64String(imageString, user)
+            img = cv2.imread(url)
+
+            cropX = int(float(str(request.POST.get("cropX"))))
+            cropY = int(float(str(request.POST.get("cropY"))))
+            cropWidth = int(float(str(request.POST.get("cropWidth"))))
+            cropHeight = int(float(str(request.POST.get("cropHeight"))))
+            if cropX < 0:
+                cropX = 0
+            if cropY < 0: # There is a bug with cropperjs. y can be negative.
+                cropY = 0
+            crop_img = img[cropY:cropY+cropHeight, cropX:cropX+cropWidth]
+
+            cv2.imwrite(url, crop_img)
+
+            # delete the old image
+            user.profile_image.delete()
+
+            # Save the cropped image to user model
+            user.profile_image.save("profile_image.png", files.File(open(url, 'rb')))
+            user.save()
+
+            payload['result'] = "success"
+            payload['cropped_profile_image'] = user.profile_image.url
+
+            # delete temp file
+            os.remove(url)	
+        except Exception as e:
+            print("exception: " + str(e))
+            payload['result'] = "error"
+            payload['exception'] = str(e)
+	
+    return HttpResponse(json.dumps(payload), content_type="application/json")
 
 def report(request):
     print(request.GET)
