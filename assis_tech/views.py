@@ -7,7 +7,14 @@ from django.contrib.auth.forms import UserCreationForm
 from assis_tech.form import CreateUserForm, AccountAuthenticationForm, AccountUpdateForm
 from django.contrib.auth import authenticate, login, logout
 import folium
-
+import cv2
+import json
+import base64
+import requests
+import os
+from django.core.files.storage import FileSystemStorage
+from django.core.files.storage import default_storage
+from django.core import files
 from .form import RelatoForm
 from .models import Relato
 from django.core.paginator import Paginator
@@ -161,6 +168,31 @@ def edit_account_view(request, *args, **kwargs):
     context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
     return render(request, "pages/edit_account.html", context)
 
+
+def save_temp_profile_image_from_base64String(imageString, user):
+	INCORRECT_PADDING_EXCEPTION = "Incorrect padding"
+	try:
+		if not os.path.exists(settings.TEMP):
+			os.mkdir(settings.TEMP)
+		if not os.path.exists(settings.TEMP + "/" + str(user.pk)):
+			os.mkdir(settings.TEMP + "/" + str(user.pk))
+		url = os.path.join(settings.TEMP + "/" + str(user.pk),TEMP_PROFILE_IMAGE_NAME)
+		storage = FileSystemStorage(location=url)
+		image = base64.b64decode(imageString)
+		with storage.open('', 'wb+') as destination:
+			destination.write(image)
+			destination.close()
+		return url
+	except Exception as e:
+		print("exception: " + str(e))
+		# workaround for an issue I found
+		if str(e) == INCORRECT_PADDING_EXCEPTION:
+			imageString += "=" * ((4 - len(imageString) % 4) % 4)
+			return save_temp_profile_image_from_base64String(imageString, user)
+	return None
+
+
+
 def crop_image(request, *args, **kwargs):
     payload = {}
     user = request.user
@@ -201,6 +233,7 @@ def crop_image(request, *args, **kwargs):
             payload['exception'] = str(e)
 	
     return HttpResponse(json.dumps(payload), content_type="application/json")
+
 
 def report(request):
     print(request.GET)
