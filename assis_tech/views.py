@@ -125,7 +125,6 @@ def edit_account_view(request, *args, **kwargs):
             request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("view", user_id=account.pk)
             new_username = form.cleaned_data['username']
             return redirect("account:view", user_id=account.pk)
         else:
