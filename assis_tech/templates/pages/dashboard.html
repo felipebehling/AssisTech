@@ -18,7 +18,7 @@
   {% include 'partials/_nav_dashboard.html' %}
   {% if messages %}
     {% for message in messages %}
-    <div class="alert {{message.tags}} alert-dismissible fade show w-25 ml-2" role="alert">
+    <div class="dashboard-alert alert {{message.tags}} alert-dismissible fade show w-25 mr-3 mt-3 position-absolute " role="alert">
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -26,8 +26,8 @@
     </div>
     {% endfor %}
   {% endif %}
-    <div class="table-container card mt-5 mx-auto ">
-      <div class="card-header clearfix d-flex pb-0">
+    <div class="table-container card mt-5 mx-auto">
+      <div class="card-header clearfix d-flex pb-3">
         <div class="row d-flex">
           <div class="col">
             <form method="get" class="form-inline">
@@ -50,28 +50,12 @@
                 {% endif %} -->
               </div>
               <button class="btn btn-primary ml-2" type="submit">Pesquisar</button>
-              {% if myFilter.form.categoria.value != "" or myFilter.form.cpf.value != "" or myFilter.form.nome.value != "" %}
+              {% if myFilter.form.categoria.value or myFilter.form.cpf.value or myFilter.form.nome.value %}
                 <a class="btn btn-secondary ml-2" href="/dashboard/">Limpar</a>
               {% endif %}
             </form>
           </div>
         </div>
-        <nav class='nav-pag' aria-label="Page navigation example">
-          <ul class="pagination">
-            {% for pagina in relatos.paginator.page_range %}
-            {% if relatos.number == pagina %}
-              <li class="page-item active">
-                <a href="?page={{pagina}}" class="page-link">{{pagina}}</a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{pagina}}">{{pagina}}</a>
-              </li>
-            {% endif %}
-            <!-- ADICIONAR UM BOTÃO DE NEXT E PREVIOUS(CASO FOR PAGINA 1 NÃO DEVERÁ HAVER PREVIOUS) -->
-            {% endfor %}
-          </ul>
-        </nav>
       </div>
       <div class="card-body p-0">
         <div class="table-responsive">
@@ -94,7 +78,7 @@
                 <td>{{ relato.cpf }}</td>
                 <td>{{ relato.data_criacao }}</td>
                 <td>{{ relato.categoria }}</td>
-                <td class="py-sm-3">
+                <td class="py-sm-2.5">
                   <a href="detalhe/{{ relato.id }}/" class="btn btn-outline-secondary">
                     <i class="fas fa-search"></i>
                   </a>
@@ -110,7 +94,24 @@
             </tbody>
           </table>
         </div>
-        <!-- /.table-responsive -->
+      </div>
+      <div class="card-footer clearfix d-flex pb-0">
+        <nav class='nav-pag w-25' aria-label="Page navigation example">
+          <ul class="pagination">
+            {% for pagina in relatos.paginator.page_range %}
+            {% if relatos.number == pagina %}
+              <li class="page-item active">
+                <a href="?page={{pagina}}" class="page-link">{{pagina}}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{pagina}}">{{pagina}}</a>
+              </li>
+            {% endif %}
+            <!-- ADICIONAR UM BOTÃO DE NEXT E PREVIOUS(CASO FOR PAGINA 1 NÃO DEVERÁ HAVER PREVIOUS) -->
+            {% endfor %}
+          </ul>
+        </nav>
       </div>
     </div>
       
@@ -126,5 +127,8 @@
       <script src="{% static 'vendor/AdminLTE/dist/js/demo.js' %}"></script>
       <script src="{% static 'vendor/AdminLTE/dist/js/script>' %}"></script>
       <script src="{% static 'scripts/dashboard.js' %}"></script>
+      <script>
+        new FormMask(document.querySelector("#filter-cpf"), "___.___.___-__", "_", [".", "-"])
+      </script>
 </body>
 </html>

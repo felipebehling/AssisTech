@@ -12,16 +12,10 @@ a{
 
 .table-container{
     width: 80%;
-    margin: 100px auto;
-    position: absolute;
 }
 
 .card-header{
     background-color: #bebebe;
-}
-
-.nav-pag{
-    margin-left: 550px;
 }
 
 .table tbody{
@@ -37,4 +31,9 @@ a{
 .filters-input{
     border: none;
     outline: none;
+}
+
+.dashboard-alert{
+    z-index: 3;
+    right: 0%;
 }
