@@ -25,7 +25,9 @@
 <div class="register-box w-50">
   <div class="card card-outline card-success">
     <div class="card-header text-center">
-      <img src="{% static 'img/AssisTechflatB.png' %}" alt="">
+      <a href="{% url 'index' %}">
+        <img src="{% static 'img/AssisTechflatB.png' %}" alt="">
+      </a>
     </div>
     <div class="card-body">
       <p class="login-box-msg"><b>Informações Pessoais</b></p>
@@ -72,7 +74,7 @@
         <p class="login-box-msg"><b>Sobre o morador de rua</b></p>
 
         <div class="input-group mb-3 col-12 px-0">
-          {% render_field form.local name="local" placeholder="Localização do morador de rua"%}
+          {% render_field form.local id="local" name="local" placeholder="Localização do morador de rua"%}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-map-marked-alt"></span>
@@ -80,7 +82,6 @@
             <button type="button" class="btn btn-block btn-outline-secondary btn-sm ml-1 br-2" onclick="getLocation()">Localização atual <i class="fas fa-street-view px-1"></i></button>
           </div>
         </div>
-
 
         <div class="form-group mb-3">
           <label>Descrição</label>
@@ -92,16 +93,20 @@
 
 
         <div class="row">
-          <div class="col-6 m-auto">
+          <div class="col-2 mr-auto ml-0">
+            <a class="btn btn-danger btn-block" href="{% url 'index' %}">Cancelar</a>
+          </div>
+          <div class="col-5 ml-auto mr-0">
             <button type="submit" class="btn btn-success btn-block">Relatar</button>
           </div>
         </div>
 
+        <!-- <div class="map">
+          {{map | safe}}
+        </div> -->
+        
       </form>
 
-      <div>
-        {{m | safe}}
-      </div>
 
     </div>
   </div>
@@ -116,15 +121,17 @@
   new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
   new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
   
-  
+
+
+
+
 function getLocation() {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       function(position){
       console.log(position)
-      alert(`Latitude: ${position.coords.latitude}
 
-Longitude: ${position.coords.longitude}`)
+      document.getElementById("local").value = `Latitude: ${position.coords.latitude} Longitude: ${position.coords.longitude}`
 
     }, 
     function(error){
@@ -145,5 +152,10 @@ Longitude: ${position.coords.longitude}`)
 <script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
+
+
+<!-- GoogleMaps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIenWSanVczJsy8QBmVm5FDvwH1E4fOfQ&callback=initMap"></script>
+
 </body>
 </html>

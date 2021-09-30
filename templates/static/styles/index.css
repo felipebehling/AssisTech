@@ -472,7 +472,6 @@ button i {
   border-radius: 20px;
   background-color: white;
   color: #25283a;
-  margin-right: 30px;
   transition: .3s ease-in-out;
 }
 
@@ -720,4 +719,60 @@ label {
   background: #3cc88f;
   border-color: #3cc88f;
   color: white;
+}
+
+.pagamento-pix {
+  background-color: #fff;
+  width: 600px;
+  height: 350px;
+  border-radius: 15px;
+  padding: 20px;
+  position: absolute;
+  margin-left: 100px;
+  display: none;
+}
+
+.title-pix {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.title-pix h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #25283a;
+  width: 100%;
+  text-align: center;
+}
+
+.title-pix i {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.inputvalue-pix {
+  width: 100%;
+}
+
+.button-pix {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.button-pix button {
+  width: 50%;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: #3cc88f;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
