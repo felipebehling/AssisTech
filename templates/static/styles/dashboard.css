@@ -12,18 +12,28 @@ a{
 
 .table-container{
     width: 80%;
-    margin: 125px 0 0 325px;
 }
 
 .card-header{
     background-color: #bebebe;
 }
 
-.nav-pag{
-    margin-left: 550px;
-}
-
 .table tbody{
     align-items: center;
     font-size: 16.5px;
+}
+
+.filters{
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.filters-input{
+    border: none;
+    outline: none;
+}
+
+.dashboard-alert{
+    z-index: 3;
+    right: 0%;
 }

@@ -256,8 +256,10 @@ def update(request, pk):
     form = RelatoForm(request.POST, instance=relato)
     if form.is_valid():
         form.save()
+        messages.add_message(request, messages.SUCCESS, 'Relato editado com sucesso!')
         return redirect('dashboard')
 def delete(request, pk):
     relato = Relato.objects.get(pk=pk)
     relato.delete()
+    messages.add_message(request, messages.SUCCESS, 'Relato deletado com sucesso!')
     return redirect('dashboard')
