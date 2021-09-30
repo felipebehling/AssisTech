@@ -26,8 +26,8 @@
     </div>
     {% endfor %}
   {% endif %}
-    <div class="table-container card mt-5 mx-auto">
-      <div class="card-header clearfix d-flex pb-3">
+    <div class="table-container card mt-4 mx-auto">
+      <div class="card-header clearfix d-flex pb-2.5">
         <div class="row d-flex">
           <div class="col">
             <form method="get" class="form-inline">
@@ -38,7 +38,7 @@
                 {% endif %}                 -->
               </div>
               <div class="form-group d-block p-1 filters mx-1">
-                {% render_field myFilter.form.cpf placeholder="CPF" class="filters-input" id="filter-cpf" autocomplete="off" %}
+                {% render_field myFilter.form.cpf placeholder="CPF" class="filters-input" id="cpf" autocomplete="off" %}
                 <!-- {% if myFilter.form.cpf.value != "" %}
                   <span onclick="deleteValue(1)"><i class="fas fa-times-circle"></i></span>
                 {% endif %} -->
@@ -78,7 +78,7 @@
                 <td>{{ relato.cpf }}</td>
                 <td>{{ relato.data_criacao }}</td>
                 <td>{{ relato.categoria }}</td>
-                <td class="py-sm-2.5">
+                <td class="py-lg-2">
                   <a href="detalhe/{{ relato.id }}/" class="btn btn-outline-secondary">
                     <i class="fas fa-search"></i>
                   </a>
@@ -97,7 +97,7 @@
       </div>
       <div class="card-footer clearfix d-flex pb-0">
         <nav class='nav-pag w-25' aria-label="Page navigation example">
-          <ul class="pagination">
+          <ul class="pagination p-0">
             {% for pagina in relatos.paginator.page_range %}
             {% if relatos.number == pagina %}
               <li class="page-item active">
@@ -128,7 +128,7 @@
       <script src="{% static 'vendor/AdminLTE/dist/js/script>' %}"></script>
       <script src="{% static 'scripts/dashboard.js' %}"></script>
       <script>
-        new FormMask(document.querySelector("#filter-cpf"), "___.___.___-__", "_", [".", "-"])
+        new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
       </script>
 </body>
 </html>

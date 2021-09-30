@@ -92,7 +92,7 @@
                 <i class="fas fa-comment-dots mr-2"></i>Descrição
               </span>
             </div>
-            <input type="text" class="form-control" placeholder="{{relato.descricao}}" cols="40" rows="10" readonly>
+            <textarea name="descricao" class="form-control" cols="40" rows="5" placeholder="{{relato.descricao}}" disabled></textarea>
           </div>
           <div class="card-footer mt-3 rounded">
             <a href="{% url 'dashboard' %}" class="btn btn-danger">Voltar</a>
