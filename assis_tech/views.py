@@ -26,8 +26,8 @@ from django.conf import settings
 from .models import Account
 
 
-TEMP_PROFILE_IMAGE_NAME = "temp_profile_image.png"
 # Create your views here.
+TEMP_PROFILE_IMAGE_NAME = "temp_profile_image.png"
 
 
 def index(request):
