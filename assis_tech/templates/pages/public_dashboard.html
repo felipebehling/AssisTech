@@ -18,26 +18,16 @@
             <a href="{% url 'index' %}"><img src="{% static 'img/AssisTech dark.png' %}" alt="Logo-site"></a>
         </div>
         <div class="navbar-content nav-public-page">
-            <div class="row">
-                <div class="col-6">
+            <div class="row d-flex justify-content-end">
+                <div class="col-8">
                     <div class="info-box mb-0">
-                      <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                      <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hands-helping"></i></span>
         
                       <div class="info-box-content">
-                        <span class="info-box-text">Likes</span>
-                        <span class="info-box-number">41,410</span>
-                      </div>
-                      <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <div class="col-6">
-                    <div class="info-box mb-0">
-                      <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-        
-                      <div class="info-box-content">
-                        <span class="info-box-text">Likes</span>
-                        <span class="info-box-number">41,410</span>
+                        <span class="info-box-text">Pessoas ajudadas</span>
+                        <span class="info-box-number my-0">
+                          {{ total_relatos }}
+                        </span>
                       </div>
                       <!-- /.info-box-content -->
                     </div>

@@ -289,5 +289,11 @@ def delete(request, pk):
 
 
 def dados(request):
+    context = {}
     list_relatos = Relato.objects.filter(categoria="2")
-    return render(request, 'pages/public_dashboard.html', {'relatos': list_relatos})
+    paginator = Paginator(list_relatos, 15)
+    page = request.GET.get('page')
+    list_relatos = paginator.get_page(page)
+    context['relatos'] = list_relatos
+    context['total_relatos'] = Relato.objects.filter(categoria="2").count()
+    return render(request, 'pages/public_dashboard.html', context)
