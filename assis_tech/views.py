@@ -26,7 +26,7 @@ from django.conf import settings
 from .models import Account
 
 from django.core.mail import send_mail
-
+import pywhatkit
 
 # Create your views here.
 TEMP_PROFILE_IMAGE_NAME = "temp_profile_image.png"
@@ -237,10 +237,11 @@ def create(request):
         form = RelatoForm(request.POST)
         if form.is_valid():
             send_mail(
-                'Teste',
-                'Testando a porra da mensagem',
-                'eduardozirbell26@gmail.com',
-                request.POST['email']
+                'Relato Enviado ',
+                'Seu relato foi enviado com sucesso e será revisado em breve!',
+                'assistechentra21@gmail.com',
+                [request.POST['email']],
+                fail_silently=False
             )
             form.save()
             return redirect('index')
