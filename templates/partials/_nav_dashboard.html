@@ -20,7 +20,7 @@
             <a href="{ url 'dashboard' %}" class="nav-link">Home</a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="{ url '/register' %}" class="nav-link">Registrar</a>
+            <a href="{ url 'register' %}" class="nav-link">Registrar</a>
           </li>
         </ul>
 
@@ -55,9 +55,8 @@
             
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <a href="{% url 'view' user_id=request.user.id %}" class="dropdown-item">
                 <!-- Message Start -->
-                <div class="media">
+                <div class="media p-2">
                   <img src="{{request.user.profile_image.url}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                   <div class="media-body">
                     <h3 class="dropdown-item-title">

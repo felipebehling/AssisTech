@@ -13,9 +13,6 @@
 	.field-heading{
 		color: #737373;
 	}
-	#id_confirm{
-		color: green;
-	}
 	#id_confirm:hover {
 		opacity: 0.3;
 	}
@@ -41,8 +38,8 @@
 		  <div class="card-body">
 		  	<div class="d-flex flex-column justify-content-center p-4">
 		  		<div class="mb-2" id="id_image_crop_confirm">
-		  			<span id="id_cancel" class="material-icons">Cancelar</span>
-		  			<span id="id_confirm" class="material-icons">Confirmar</span>
+		  			<span id="id_cancel" class="fas fa-ban"></span>
+		  			<span id="id_confirm" class="fas fa-check"></span>
 		  		</div>
 		  		<div class="image-container" id="id_image_container">
 	  				<img class="border border-dark rounded-circle img-fluid mx-auto profile-image" id="id_profile_image_display" src="{{form.initial.profile_image.url}}" alt="codingwithmitch logo">

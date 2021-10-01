@@ -81,37 +81,7 @@ def logoutUser(request):
     return redirect('login')
 
 
-def account_view(request, *args, **kwargs):
-    """
-    - Logic here is kind of tricky
-            is_self (boolean)
-                    is_friend (boolean)
-                            -1: NO_REQUEST_SENT
-                            0: THEM_SENT_TO_YOU
-                            1: YOU_SENT_TO_THEM
-    """
-    context = {}
-    user_id = kwargs.get("user_id")
-    try:
-        account = Account.objects.get(pk=user_id)
-    except:
-        return HttpResponse("Something went wrong.")
-    if account:
-        context['id'] = account.id
-        context['username'] = account.username
-        context['email'] = account.email
-        context['profile_image'] = account.profile_image.url
-        context['hide_email'] = account.hide_email
-        # Define template variables
-        is_self = True
-        user = request.user
-        if user.is_authenticated and user != account:
-            is_self = False
-        elif not user.is_authenticated:
-            is_self = False
-        # Set the template variables to the values
-        context['is_self'] = is_self
-        return render(request, "pages/account.html", context)
+
 def edit_account_view(request, *args, **kwargs):
     if not request.user.is_authenticated:
         return redirect("login")
@@ -126,7 +96,7 @@ def edit_account_view(request, *args, **kwargs):
         if form.is_valid():
             form.save()
             new_username = form.cleaned_data['username']
-            return redirect("account:view", user_id=account.pk)
+            return redirect("dashboard")
         else:
             form = AccountUpdateForm(request.POST, instance=request.user,
                                      initial={
@@ -244,20 +214,25 @@ def dashboard(request):
     page = request.GET.get('page')
     list_relatos = paginator.get_page(page)
     return render(request, 'pages/dashboard.html', {'relatos': list_relatos, 'myFilter': myFilter})
+
 def detail(request, pk):
     relato = Relato.objects.get(pk=pk)
     return render(request, 'pages/detalhe.html', {'relato': relato})
+
 def edit(request, pk):
     relato = Relato.objects.get(pk=pk)
     form = RelatoForm(instance=relato)
     return render(request, 'pages/edit.html', {'relato': relato, 'form': form})
+
 def update(request, pk):
     relato = Relato.objects.get(pk=pk)
     form = RelatoForm(request.POST, instance=relato)
     if form.is_valid():
         form.save()
         return redirect('dashboard')
+
 def delete(request, pk):
     relato = Relato.objects.get(pk=pk)
     relato.delete()
     return redirect('dashboard')
+
