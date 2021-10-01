@@ -72,6 +72,7 @@ class RelatoForm(ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(RelatoForm, self).__init__(*args, **kwargs)
+        categoria = forms.ChoiceField(label="Teste")
         for field in self.fields:
             self.fields[field]. widget.attrs.update({'class': 'form-control'})
 

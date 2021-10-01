@@ -144,6 +144,7 @@ a {
   display: table;
   align-items: center;
 }
+
 .shortcuts-div li { 
   padding: 10px 0;
 
@@ -151,9 +152,7 @@ a {
   
   display: table-cell; 
 }
-.shortcuts-div li:nth-child(3) {
-  width: 220px !important;
-}
+
 .shortcuts-div a {  
   text-decoration: none;
   letter-spacing: 0.15em;
@@ -472,7 +471,6 @@ button i {
   border-radius: 20px;
   background-color: white;
   color: #25283a;
-  margin-right: 30px;
   transition: .3s ease-in-out;
 }
 

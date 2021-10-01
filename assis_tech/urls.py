@@ -22,7 +22,6 @@ urlpatterns = [
   path('dashboard/atualizar/<int:pk>/', views.update, name='update'),
   path('dashboard/deletar/<int:pk>/', views.delete, name='delete'),
 
-
   path('reset_password/',
      auth_views.PasswordResetView.as_view(template_name="pages/password_reset.html"),
      name="reset_password"),
@@ -40,7 +39,6 @@ urlpatterns = [
       name="password_reset_complete"),
 
 
+
+  path('dados/', views.dados, name='dados'),
 ]
-
-
-

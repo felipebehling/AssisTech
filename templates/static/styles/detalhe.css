@@ -8,7 +8,6 @@
 
 .card{
     background-color: #bebebe;
-    margin: 125px 0 0 400px;
 }
 
 .card-head{
@@ -19,6 +18,10 @@
     position: relative;
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
+}
+
+.card-footer{
+    border-radius: 5px;
 }
 
 
