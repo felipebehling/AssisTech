@@ -26,7 +26,7 @@ from django.conf import settings
 from .models import Account
 
 from django.core.mail import send_mail
-import pywhatkit
+
 
 # Create your views here.
 TEMP_PROFILE_IMAGE_NAME = "temp_profile_image.png"
@@ -138,7 +138,7 @@ def edit_account_view(request, *args, **kwargs):
         if form.is_valid():
             form.save()
             new_username = form.cleaned_data['username']
-            return redirect("account:view", user_id=account.pk)
+            return redirect("dashboard")
         else:
             form = AccountUpdateForm(request.POST, instance=request.user,
                                      initial={
@@ -308,3 +308,4 @@ def dados(request):
     context['relatos'] = list_relatos
     context['total_relatos'] = Relato.objects.filter(categoria="2").count()
     return render(request, 'pages/public_dashboard.html', context)
+
