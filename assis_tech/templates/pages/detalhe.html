@@ -18,7 +18,7 @@
 
   <div class="main-h1-holder-3">
     <div>
-      <div class="card w-75">
+      <div class="card w-50 mx-auto mt-5">
         <div class="card-head">
           <h3 class="card-title">Informaçãoes do Relato {{relato.id}}</h3>
         </div>
@@ -92,11 +92,11 @@
                 <i class="fas fa-comment-dots mr-2"></i>Descrição
               </span>
             </div>
-            <input type="text" class="form-control" placeholder="{{relato.descricao}}" disabled>
+            <textarea name="descricao" class="form-control" cols="40" rows="5" placeholder="{{relato.descricao}}" disabled></textarea>
           </div>
-          <div class="card-footer">
+          <div class="card-footer mt-3 rounded">
             <a href="{% url 'dashboard' %}" class="btn btn-danger">Voltar</a>
-            <a href="/dashboard/editar/{{relato.id}}"class="btn btn-success float-right">Editar</a>
+            <a href="/dashboard/editar/{{relato.id}}/"class="btn btn-success float-right">Editar</a>
           </div>
         </div>
 </body>

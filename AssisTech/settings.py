@@ -143,3 +143,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = ''
