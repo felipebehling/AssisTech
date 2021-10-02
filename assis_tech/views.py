@@ -251,8 +251,9 @@ def create(request):
     if request.method == "POST":
         form = RelatoForm(request.POST)
         if form.is_valid():
+            messages.add_message(request, messages.SUCCESS, 'Relato enviado com sucesso!')
             send_mail(
-                'Relato Enviado ',
+                'Relato Enviado com Sucesso!',
                 'Seu relato foi enviado com sucesso e será revisado em breve!',
                 'assistechentra21@gmail.com',
                 [request.POST['email']],

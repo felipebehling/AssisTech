@@ -775,3 +775,8 @@ label {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.index-alert{
+  z-index: 5;
+  left: 50%;
+}

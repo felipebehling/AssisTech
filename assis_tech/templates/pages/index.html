@@ -7,6 +7,16 @@
 </head>
 
 <body>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="index-alert alert alert-success **{{message.tags}}** alert-dismissible fade show mt-3 position-absolute" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
   <header class="header">
     <div class="header-div-1">
       <div>
