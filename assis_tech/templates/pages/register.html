@@ -26,14 +26,14 @@
 <div class="register-box">
   <div class="card card-outline card-success h-100">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Register</b></a>
+      <p class="h1"><b>Register</b></p>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Registre um novo administrador</p>
 
       {% if messages %}
             {% for message in messages %}
-            <div class="alert alert-warning **{{message.tags}}** alert-dismissible fade show" role="alert">
+            <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
                 {{ message }}
                 <button type="button" class="close white" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -93,7 +93,7 @@
       </form>
 
       <div class="text-center mt-3">
-          <a href="../login" class="text-center text-admin">Voltar para o painel admin</a>
+          <a href="{% url 'dashboard' %}" class="text-center text-admin">Voltar para o painel admin</a>
       </div>
     </div>
     <!-- /.form-box -->

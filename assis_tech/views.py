@@ -51,12 +51,10 @@ def registerPage(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            messages.add_message(request, messages.SUCCESS,
-                                 'Usuário cadastrado com sucesso.')
+            messages.add_message(request, messages.SUCCESS, 'Usuário cadastrado com sucesso.')
             form.save()
         else:
-            messages.add_message(request, messages.ERROR,
-                                 'Falha ao Registrar Usuário.')
+            messages.add_message(request, messages.ERROR, 'Falha ao Registrar Usuário.')
     return render(request, 'pages/register.html', context)
 
 
