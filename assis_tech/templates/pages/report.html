@@ -36,7 +36,7 @@
         {% csrf_token %}
         
         <div class="input-group mb-3">
-          {% render_field form.nome name="nome" placeholder="Nome Completo"%}
+          {% render_field form.nome name="nome" placeholder="Nome Completo" autocomplete="off"%}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          {% render_field form.cpf name="cpf" id="cpf" placeholder="CPF"%}
+          {% render_field form.cpf name="cpf" id="cpf" placeholder="CPF" autocomplete="off"%}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-address-card"></span>
@@ -53,7 +53,7 @@
         </div>
         <div class="input-group col-12 m-0 p-0">
           <div class="input-group mb-3 col-7 p-0" >
-            {% render_field form.email type="email" name="email" placeholder="E-mail" %}
+            {% render_field form.email type="email" name="email" placeholder="E-mail" autocomplete="off"%}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="input-group mb-3 col-5 pr-0">
-            {% render_field form.telefone name="telefone" id="tel" placeholder="Telefone"%}
+            {% render_field form.telefone name="telefone" id="tel" placeholder="Telefone" autocomplete="off"%}
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-phone"></span>
