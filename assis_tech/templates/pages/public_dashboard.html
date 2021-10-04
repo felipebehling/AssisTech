@@ -36,10 +36,9 @@
             </div>
         </div>
     </div>
-    <table class="table table-striped">
+    <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">Local</th>
             <th scope="col">Descrição</th>
@@ -49,7 +48,6 @@
         <tbody>
         {% for relato in relatos %}
             <tr>
-                <td>{{relato.id}}</td>
                 <td>{{relato.nome}}</td>
                 <td>{{relato.local}}</td>
                 <td>{{relato.descricao}}</td>
