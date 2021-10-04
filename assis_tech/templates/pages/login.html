@@ -15,15 +15,12 @@
   <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
   <link rel="stylesheet" href="{% static 'styles/login.css' %}">
 </head>
+
 <body class="hold-transition login-page">
-<div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card card-outline card-success">
-    <div class="card-header text-center">
-      <p class="h1"><b>Login</b></p>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Login para administradores</p>
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-success">
+      <div class="card-header text-center">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-danger **{{message.tags}}** alert-dismissible fade show" role="alert">
@@ -34,6 +31,12 @@
           </div>
         {% endfor %}
       {% endif %}  
+      <a href="{% url 'index' %}">
+        <img class="w-75" src="{% static 'img/AssisTechflatB.png' %}" alt="">
+      </a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg mb-2"><strong>Login para administradores</strong></p>
 
       <form action="" method="POST">
         {% csrf_token %}
