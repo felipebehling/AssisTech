@@ -686,6 +686,14 @@ input::placeholder {
   text-align: center;
 }
 
+.select-box2 {
+  position: relative;
+  float: left;
+  width: 25%;
+  padding: 0px 10px;
+  text-align: center;
+}
+
 .input {
   left: 0px;
   top: 0px;
@@ -695,6 +703,18 @@ input::placeholder {
 }
 
 .input:checked {
+  background-color: #3cc88f;
+}
+
+.input2 {
+  left: 0px;
+  top: 0px;
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+}
+
+.input2:checked {
   background-color: #3cc88f;
 }
 
@@ -714,7 +734,13 @@ label {
   color: #25283a;
 }
 
-.select-box input[type="radio"]:checked+label {
+.select-box .input[type="radio"]:checked+label {
+  background: #3cc88f;
+  border-color: #3cc88f;
+  color: white;
+}
+
+.select-box2 .input2[type="radio"]:checked+label {
   background: #3cc88f;
   border-color: #3cc88f;
   color: white;
