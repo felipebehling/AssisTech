@@ -1,39 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
 
-.table-container{
-    width: 80%;
+::-webkit-scrollbar {
+  padding: 1px;
+
+  width: 5px;
+
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+
+  background-color: #3cc88f;
 }
 
-.card-header{
-    background-color: #bebebe;
+.table-container {
+  width: 80%;
 }
 
-.table tbody{
-    align-items: center;
-    font-size: 16.5px;
+.card-header {
+  background-color: #bebebe;
 }
 
-.filters{
-    border: 1px solid grey;
-    border-radius: 5px;
+.table tbody {
+  align-items: center;
+  font-size: 16.5px;
 }
 
-.filters-input{
-    border: none;
-    outline: none;
+.filters {
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
-.dashboard-alert{
-    z-index: 3;
-    right: 0%;
+.filters-input {
+  border: none;
+  outline: none;
+}
+
+.dashboard-alert {
+  z-index: 3;
+  right: 0%;
 }
