@@ -45,7 +45,7 @@ def index(request):
     }
     return render(request, 'pages/index.html', context)
 
-
+@login_required(login_url='login')
 def registerPage(request):
     context = {}
     if request.method == "POST":
@@ -88,7 +88,7 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-
+@login_required(login_url='login')
 def account_view(request, *args, **kwargs):
     """
     - Logic here is kind of tricky
@@ -121,7 +121,7 @@ def account_view(request, *args, **kwargs):
         context['is_self'] = is_self
         return render(request, "pages/account.html", context)
 
-
+@login_required(login_url='login')
 def edit_account_view(request, *args, **kwargs):
     if not request.user.is_authenticated:
         return redirect("login")
@@ -244,7 +244,7 @@ def report(request):
     data['map'] = m
     return render(request, 'pages/report.html', data)
 
-
+@login_required(login_url='login')
 def create(request):
     if request.method == "POST":
         form = RelatoForm(request.POST)
@@ -261,6 +261,8 @@ def create(request):
             return redirect('index')
 
 
+
+@login_required(login_url='login')
 def dashboard(request):
     list_relatos = Relato.objects.order_by('id')
     myFilter = RelatoFilter(request.GET, queryset=list_relatos)
@@ -270,18 +272,18 @@ def dashboard(request):
     list_relatos = paginator.get_page(page)
     return render(request, 'pages/dashboard.html', {'relatos': list_relatos, 'myFilter': myFilter})
 
-
+@login_required(login_url='login')
 def detail(request, pk):
     relato = Relato.objects.get(pk=pk)
     return render(request, 'pages/detalhe.html', {'relato': relato})
 
-
+@login_required(login_url='login')
 def edit(request, pk):
     relato = Relato.objects.get(pk=pk)
     form = RelatoForm(instance=relato)
     return render(request, 'pages/edit.html', {'relato': relato, 'form': form})
 
-
+@login_required(login_url='login')
 def update(request, pk):
     relato = Relato.objects.get(pk=pk)
     form = RelatoForm(request.POST, instance=relato)
@@ -290,14 +292,14 @@ def update(request, pk):
         messages.add_message(request, messages.SUCCESS, 'Relato editado com sucesso!')
         return redirect('dashboard')
 
-
+@login_required(login_url='login')
 def delete(request, pk):
     relato = Relato.objects.get(pk=pk)
     relato.delete()
     messages.add_message(request, messages.SUCCESS, 'Relato deletado com sucesso!')
     return redirect('dashboard')
 
-
+@login_required(login_url='login')
 def dados(request):
     context = {}
     list_relatos = Relato.objects.filter(categoria="2").order_by('-data_criacao')

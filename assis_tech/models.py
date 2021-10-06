@@ -43,7 +43,7 @@ def get_profile_image_filepath(self, filename):
 
 
 def get_default_profile_image():  # Caso a pessoa não coloque uma foto
-    return "img/default-user.png"
+    return "static/img/default-user.png"
 
 
 # Campos como is_admin, is_active, is_staff, is_superuser são obrigatorios para criar um model de usuario
