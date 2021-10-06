@@ -9,7 +9,7 @@
 <body>
   {% if messages %}
     {% for message in messages %}
-      <div class="index-alert alert alert-success **{{message.tags}}** alert-dismissible fade show mt-3 position-absolute" role="alert">
+      <div class="index-alert alert {{message.tags}} alert-dismissible fade show" role="alert">
         {{ message }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -232,6 +232,16 @@
     </footer>
   </div>
 
+<script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/dist/js/adminlte.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/plugins/jquery-mousewheel/jquery.mousewheel.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/plugins/jquery-mapael/jquery.mapael.min.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/plugins/jquery-mapael/maps/usa_states.min.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/plugins/chart.js/Chart.min.js' %}"></script>
+<script src="{% static 'vendor/AdminLTE/dist/js/demo.js' %}"></script>  
 <script src="{% static 'scripts/masks.js' %}"></script>
 
 <script>
