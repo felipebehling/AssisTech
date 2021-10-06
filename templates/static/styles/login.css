@@ -1,54 +1,66 @@
 body {
-    background: url(../img/background_registerV3.jpg);
-    background-size: cover;
+  background: url(../img/background_registerV3.jpg);
+  background-size: cover;
 }
 
+::-webkit-scrollbar {
+  padding: 1px;
+
+  width: 5px;
+
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+
+  background-color: #3cc88f;
+}
 
 .login-box {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 450px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 450px;
 }
 
 .card {
-    border-radius: 0px;
-    height: 100%;
+  border-radius: 0px;
+  height: 100%;
 }
 
 .card-header {
-    margin-top: 200px;
+  margin-top: 200px;
 }
 
 .login-box-msg {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .text-admin {
-    color: #3cc88f;
+  color: #3cc88f;
 }
 
 .text-admin:hover {
-    color: #217755;
+  color: #217755;
 }
 
 .form-control:focus {
-    border: 1px solid #3cc88f;
-    color: #3cc88f;
+  border: 1px solid #3cc88f;
+  color: #3cc88f;
 }
 
 @media screen and (max-width: 850px) {
-    body {
-        background: none;
-        background-color: #edf1f5;
-    }
+  body {
+    background: none;
+    background-color: #edf1f5;
+  }
 
-    .card {
-        width: 100%;
-    }
+  .card {
+    width: 100%;
+  }
 
-    .login-box {
-        width: 100%;
-    }
+  .login-box {
+    width: 100%;
+  }
 }
