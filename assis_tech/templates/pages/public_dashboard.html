@@ -1,66 +1,71 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/dados.css' %}">
-    <title>AssisTech</title>
-</head>
-<body style="background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5) ), url(/templates/static/img/backgroundV2.jpg);">
-    <div class="navbar h-25">
-        <div class="nav-logo ml-5">
-            <a class="w-25" href="{% url 'index' %}">
-              <img src="{% static 'img/AssisTechflatWv2.png' %}" alt="Logo-site" style="width: 230px;">
-            </a>
-        </div>
-        <div class="navbar-content nav-public-page">
-            <div class="row d-flex justify-content-end">
-                <div class="col-8">
-                    <div class="info-box mb-0">
-                      <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hands-helping"></i></span>
-        
-                      <div class="info-box-content">
-                        <span class="info-box-text">Pessoas ajudadas</span>
-                        <span class="info-box-number my-0">
-                          {{ total_relatos }}
-                        </span>
-                      </div>
-                      <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
 
-      <table class="table table-striped table-borderless col-lg-9 mx-auto mt-4 bg-light rounded">
-          <thead>
-            <tr class="row-lg w-100">
-              <th class="col-lg-2">Nome</th>
-              <th class="col-lg-5">Local</th>
-              <th class="col-lg-6">Descrição</th>
-              <th class="col-lg-2">Categoria</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for relato in relatos %}
-              <tr>
-                  <td>{{relato.nome}}</td>
-                  <td>{{relato.local}}</td>
-                  <td>{{relato.descricao}}</td>
-                  <td>{{relato.categoria}}</td>
-              </tr>
-          {% endfor %}
-          </tbody>
-        </table>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/AdminLTE/dist/css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/dados.css' %}">
+  <title>AssisTech</title>
+</head>
+
+<body
+  style="background: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5) ), url(/templates/static/img/backgroundV2.jpg);">
+  <div class="navbar h-25">
+    <div class="nav-logo ml-5">
+      <a class="w-25" href="{% url 'index' %}">
+        <img src="{% static 'img/AssisTechflatWv2.png' %}" alt="Logo-site" style="width: 230px;">
+      </a>
+    </div>
+    <div class="navbar-content nav-public-page">
+      <div class="row d-flex justify-content-end">
+        <div class="col-8">
+          <div class="info-box mb-0">
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hands-helping"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Pessoas ajudadas</span>
+              <span class="info-box-number my-0">
+                {{ total_relatos }}
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <table class="table table-striped table-borderless col-lg-10 mx-auto mt-5 p-5 bg-light rounded opacity-2">
+    <thead>
+      <tr class="row-lg w-100">
+        <th class="col-lg-2 text-center">Nome</th>
+        <th class="col-lg-5 text-center">Local</th>
+        <th class="col-lg-6 text-center">Descrição</th>
+        <th class="col-lg-2 text-center">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for relato in relatos %}
+      <tr>
+        <td class="p-3 text-center">{{relato.nome}}</td>
+        <td class="p-3">{{relato.local}}</td>
+        <td class="p-3 mh-50">{{relato.descricao}}</td>
+        <td class="p-3">{{relato.categoria}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
 
 </body>
+
 </html>
