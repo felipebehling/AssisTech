@@ -10,6 +10,19 @@ body {
   background-size: cover;
 }
 
+::-webkit-scrollbar {
+  padding: 1px;
+
+  width: 5px;
+
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+
+  background-color: #3cc88f;
+}
+
 .card-header img {
   width: 250px;
 }
