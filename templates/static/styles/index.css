@@ -778,5 +778,7 @@ label {
 
 .index-alert{
   z-index: 5;
-  left: 50%;
+  position: fixed;
+  top: 120;
+  right: 20;
 }
