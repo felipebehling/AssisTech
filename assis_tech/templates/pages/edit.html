@@ -25,7 +25,7 @@
             <h1 class="card-title">Informaçãoes do Relato {{relato.id}}</h1>
         </div>
         <div class="card-body dark">
-            <form action="/dashboard/atualizar/{{relato.id}}/" method="POST">
+            <form action="/dashboard/update/{{relato.id}}/" method="POST">
                 {% csrf_token %}
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

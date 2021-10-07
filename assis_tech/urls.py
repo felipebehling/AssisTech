@@ -17,10 +17,10 @@ urlpatterns = [
   path('dashboard/<user_id>/edit/cropImage/', crop_image, name="crop_image"),
   
   path('dashboard/', views.dashboard, name='dashboard'),
-  path('dashboard/detalhe/<int:pk>/', views.detail, name='detail'),
-  path('dashboard/editar/<int:pk>/', views.edit, name='edit'),
-  path('dashboard/atualizar/<int:pk>/', views.update, name='update'),
-  path('dashboard/deletar/<int:pk>/', views.delete, name='delete'),
+  path('dashboard/detail/<int:pk>/', views.detail, name='detail'),
+  path('dashboard/edit/<int:pk>/', views.edit, name='edit'),
+  path('dashboard/update/<int:pk>/', views.update, name='update'),
+  path('dashboard/delete/<int:pk>/', views.delete, name='delete'),
 
   path('reset_password/',
      auth_views.PasswordResetView.as_view(template_name="pages/password_reset.html"),
