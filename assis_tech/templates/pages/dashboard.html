@@ -16,6 +16,26 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tem certeza de que deseja excluir este relato?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Se você clicar em excluir este relato ele será excluido para sempre!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <a href="" id="id_delete" class="btn btn-danger">Excluir</a>
+      </div>
+    </div>
+  </div>
+</div>
   {% include 'partials/_nav_dashboard.html' %}
   {% if messages %}
     {% for message in messages %}
@@ -86,9 +106,9 @@
                   <a href="editar/{{ relato.id }}/" class="btn btn-outline-primary">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <a href="deletar/{{ relato.id }}/" class="btn btn-outline-danger">
+                  <button type="button" onClick="relatoDelete('{{ relato.id }}')" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-trash-alt"></i>
-                  </a>
+                  </button>
                 </td>
               </tr>
               {% endfor %}
@@ -128,7 +148,10 @@
       <script src="{% static 'vendor/AdminLTE/dist/js/demo.js' %}"></script>
       <script src="{% static 'scripts/dashboard.js' %}"></script>
       <script>
-        new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
+        function relatoDelete(id){
+          var link = document.querySelector("#id_delete");
+          link.setAttribute("href", "deletar/" + id + "/");
+        }
       </script>
 </body>
 </html>
