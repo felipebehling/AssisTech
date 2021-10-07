@@ -16,7 +16,7 @@ from django.core.files.storage import default_storage
 from django.core import files
 
 from .form import RelatoForm
-from .models import Relato
+from .models import Categoria, Relato
 from django.core.paginator import Paginator
 from .filters import RelatoFilter
 from django.contrib import messages
@@ -42,6 +42,8 @@ def index(request):
     m = m._repr_html_()
     context = {
         'm': m,
+        'total_relatos': Relato.objects.filter().count(),
+        'pessoas_ajudadas': Relato.objects.filter(categoria='2').count()
     }
     return render(request, 'pages/index.html', context)
 
