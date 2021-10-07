@@ -100,10 +100,10 @@
                 <td>{{ relato.data_criacao }}</td>
                 <td>{{ relato.categoria }}</td>
                 <td class="py-lg-2">
-                  <a href="detalhe/{{ relato.id }}/" class="btn btn-outline-secondary">
+                  <a href="detail/{{ relato.id }}/" class="btn btn-outline-secondary">
                     <i class="fas fa-search"></i>
                   </a>
-                  <a href="editar/{{ relato.id }}/" class="btn btn-outline-primary">
+                  <a href="edit/{{ relato.id }}/" class="btn btn-outline-primary">
                     <i class="fas fa-edit"></i>
                   </a>
                   <button type="button" onClick="relatoDelete('{{ relato.id }}')" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
@@ -150,7 +150,7 @@
       <script>
         function relatoDelete(id){
           var link = document.querySelector("#id_delete");
-          link.setAttribute("href", "deletar/" + id + "/");
+          link.setAttribute("href", "delete/" + id + "/");
         }
       </script>
 </body>

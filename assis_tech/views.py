@@ -244,7 +244,6 @@ def report(request):
     data['map'] = m
     return render(request, 'pages/report.html', data)
 
-@login_required(login_url='login')
 def create(request):
     if request.method == "POST":
         form = RelatoForm(request.POST)
@@ -299,7 +298,6 @@ def delete(request, pk):
     messages.add_message(request, messages.SUCCESS, 'Relato deletado com sucesso!')
     return redirect('dashboard')
 
-@login_required(login_url='login')
 def dados(request):
     context = {}
     list_relatos = Relato.objects.filter(categoria="2").order_by('-data_criacao')
