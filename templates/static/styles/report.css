@@ -26,3 +26,7 @@ body {
 .card-header img {
   width: 250px;
 }
+
+.map {
+  display: none;
+}

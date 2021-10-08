@@ -243,8 +243,11 @@ def report(request):
                   tooltop='clique para mais', popup='Centro POP').add_to(m)
     # Get html representation of map
     m = m._repr_html_()
-    data['map'] = m
-    return render(request, 'pages/report.html', data)
+    context = {
+        'form': RelatoForm(),
+        'm': m
+    }
+    return render(request, 'pages/report.html', context)
 
 def create(request):
     if request.method == "POST":
