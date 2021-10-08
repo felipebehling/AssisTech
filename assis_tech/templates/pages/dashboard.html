@@ -70,9 +70,9 @@
                   <span onclick="deleteValue(2)"><i class="fas fa-times-circle"></i></span>
                 {% endif %} -->
               </div>
-              <button class="btn btn-primary ml-2" type="submit">Pesquisar</button>
+              <button class="btn btn-primary ml-2 btn-custom" type="submit">Pesquisar</button>
               {% if myFilter.form.categoria.value or myFilter.form.cpf.value or myFilter.form.nome.value %}
-                <a class="btn btn-secondary ml-2" href="/dashboard/">Limpar</a>
+                <a class="btn btn-secondary ml-2 btn-custom" href="/dashboard/">Limpar</a>
               {% endif %}
             </form>
           </div>
@@ -103,8 +103,8 @@
                   <a href="detail/{{ relato.id }}/" class="btn btn-outline-secondary">
                     <i class="fas fa-search"></i>
                   </a>
-                  <a href="edit/{{ relato.id }}/" class="btn btn-outline-primary">
-                    <i class="fas fa-edit"></i>
+                  <a href="edit/{{ relato.id }}/" class="btn btn-outline-primary edit-custom">
+                    <i class="fas fa-edit edit-custom"></i>
                   </a>
                   <button type="button" onClick="relatoDelete('{{ relato.id }}')" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-trash-alt"></i>
@@ -122,7 +122,7 @@
             {% for pagina in relatos.paginator.page_range %}
             {% if relatos.number == pagina %}
               <li class="page-item active">
-                <a href="?page={{pagina}}" class="page-link">{{pagina}}</a>
+                <a href="?page={{pagina}}" class="page-link btn-custom">{{pagina}}</a>
               </li>
             {% else %}
               <li class="page-item">

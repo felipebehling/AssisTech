@@ -50,3 +50,13 @@ a {
   z-index: 3;
   right: 0%;
 }
+
+.btn-custom{
+    background-color: #3cc88f !important;
+    border: #edf1f5 !important;}
+
+.edit-custom{
+  background-color: white !important;
+  color: #3cc88f !important;
+  border-color: #3cc88f !important;}
+  

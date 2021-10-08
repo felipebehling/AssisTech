@@ -21,7 +21,14 @@ a {
   
     z-index: 10;
   }
-  
+
+.nav-gray-custom {
+  background-color: #3cc88f !important;
+}
+
+.nav-gray-custom .nav-link {
+  color:#edf1f5 !important;
+}
   .header img {
     margin: auto;
   
