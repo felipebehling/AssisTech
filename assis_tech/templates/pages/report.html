@@ -24,18 +24,18 @@
 <body class="hold-transition register-page">
 <div class="register-box w-50">
   <div class="card card-outline card-success">
-    <div class="card-header text-center">
+    <div class="card-header text-center p-0">
       <a href="{% url 'index' %}">
         <img src="{% static 'img/AssisTechflatB.png' %}" alt="">
       </a>
     </div>
-    <div class="card-body">
-      <p class="login-box-msg"><b>Informações Pessoais</b></p>
+    <div class="card-body pt-0">
+      <p class="login-box-msg py-3"><b>Informações Pessoais</b></p>
 
       <form action="/create/" method="POST">
         {% csrf_token %}
         
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
           {% render_field form.nome name="nome" placeholder="Nome Completo" autocomplete="off"%}
           <div class="input-group-append">
             <div class="input-group-text">
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
           {% render_field form.cpf name="cpf" id="cpf" placeholder="CPF" autocomplete="off"%}
           <div class="input-group-append">
             <div class="input-group-text">
@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="input-group col-12 m-0 p-0">
-          <div class="input-group mb-3 col-7 p-0" >
+          <div class="input-group col-7 p-0" >
             {% render_field form.email type="email" name="email" placeholder="E-mail" autocomplete="off"%}
             <div class="input-group-append">
               <div class="input-group-text">
@@ -60,7 +60,7 @@
               </div>
             </div>
           </div>
-          <div class="input-group mb-3 col-5 pr-0">
+          <div class="input-group col-5 pr-0">
             {% render_field form.telefone name="telefone" id="tel" placeholder="Telefone" autocomplete="off"%}
             <div class="input-group-append">
               <div class="input-group-text">
@@ -71,7 +71,7 @@
         </div>
 
         <hr>
-        <p class="login-box-msg"><b>Sobre o morador de rua</b></p>
+        <p class="login-box-msg pt-0"><b>Sobre o morador de rua</b></p>
 
         <div class="input-group mb-3 col-12 px-0">
           {% render_field form.local id="local" name="local" placeholder="Localização do morador de rua"%}
@@ -83,7 +83,7 @@
           </div>
         </div>
 
-        <div class="map mx-auto my-1" id="map">
+        <div class="map mx-auto my-2" id="map">
 
         </div>
 
@@ -122,8 +122,10 @@
   new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
   new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
   
-  function iniciarMap(lat, lng, road){
+  function iniciarMap(lat, lng){
     let mapa = document.getElementById('map')
+    let box = document.getElementsByClassName('register-page')[0]
+    // box = box.classList.add('mt-5')
     mapa.style.display = 'block'
     var options = {
       zoom: 15,
@@ -163,7 +165,7 @@
           
                       document.querySelector('#local').value = `Próximo a ${road} nº ${number} ${district} ${city}`
 
-                      iniciarMap(position.coords.latitude, position.coords.longitude, road)
+                      iniciarMap(position.coords.latitude, position.coords.longitude)
                       
                   });
           

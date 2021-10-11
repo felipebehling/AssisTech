@@ -29,8 +29,12 @@ body {
 
 .map {
   display: none;
-  border: 1px solid black;
   border-radius: 10px;
-  width: 80%;
-  height: 300px;
+  width: 100%;
+  height: 250px;
+}
+
+#id_descricao{
+  max-height: 80px;
+  min-height: 80px;
 }
