@@ -103,8 +103,11 @@
                   <a href="detail/{{ relato.id }}/" class="btn btn-outline-secondary">
                     <i class="fas fa-search"></i>
                   </a>
-                  <a href="edit/{{ relato.id }}/" class="btn btn-outline-primary edit-custom">
+                  <a href="edit/{{ relato.id }}/" class="btn edit-custom">
                     <i class="fas fa-edit edit-custom"></i>
+                  </a>
+                  <a href="localization/{{ relato.id }}/" class="btn btn-outline-primary">
+                    <i class="fas fa-map-marker-alt"></i>
                   </a>
                   <button type="button" onClick="relatoDelete('{{ relato.id }}')" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-trash-alt"></i>
