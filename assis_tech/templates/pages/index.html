@@ -246,7 +246,7 @@
 
   </section>
 
-    <section id="map" class="map-section">
+    <section class="map-section">
 
       <div class="map-holder">
 
@@ -258,8 +258,8 @@
             <p><i class="fas fa-map-marker-alt"></i><span><strong>Endereço:</strong> Rua Clara Persuhn, 192 - Blumenau/SC</span></p>
           </div>
         </div>
-        <div class="map">
-          {{m | safe}}
+        <div class="map" id="map">
+
         </div>
 
       </div>
@@ -292,15 +292,12 @@
 <script src="{% static 'vendor/AdminLTE/plugins/chart.js/Chart.min.js' %}"></script>
 <script src="{% static 'vendor/AdminLTE/dist/js/demo.js' %}"></script>  
 <script src="{% static 'scripts/masks.js' %}"></script>
-
-<script>
-  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
-</script>
+<script src="{% static 'scripts/index.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgZc-WY2Z8zaTOK8G0ApbWUkCbJI8TGB8&callback=initMap&v=weekly" async></script>
 
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
-<script src="{% static 'scripts/index.js' %}"></script>
 
 </body>
 

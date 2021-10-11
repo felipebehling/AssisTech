@@ -653,6 +653,8 @@ input::placeholder {
 
 .map {
   width: 40%;
+  height: 350px;
+  border-radius: 10px;
 }
 
 .info {
