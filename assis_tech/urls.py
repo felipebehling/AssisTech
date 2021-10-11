@@ -21,6 +21,7 @@ urlpatterns = [
   path('dashboard/edit/<int:pk>/', views.edit, name='edit'),
   path('dashboard/update/<int:pk>/', views.update, name='update'),
   path('dashboard/delete/<int:pk>/', views.delete, name='delete'),
+  path('dashboard/localization/<int:pk>/', views.localization, name='localization'),
 
   path('reset_password/',
      auth_views.PasswordResetView.as_view(template_name="pages/password_reset.html"),

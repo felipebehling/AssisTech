@@ -303,6 +303,11 @@ def delete(request, pk):
     messages.add_message(request, messages.SUCCESS, 'Relato deletado com sucesso!')
     return redirect('dashboard')
 
+@login_required(login_url='login')
+def localization(request, pk):
+    relato = Relato.objects.get(pk=pk)
+    return redirect(f'http://maps.google.com?q={relato.local}')
+
 def dados(request):
     context = {}
     list_relatos = Relato.objects.filter(categoria="2").order_by('-data_criacao')
@@ -312,4 +317,3 @@ def dados(request):
     context['relatos'] = list_relatos
     context['total_relatos'] = Relato.objects.filter(categoria="2").count()
     return render(request, 'pages/public_dashboard.html', context)
-
