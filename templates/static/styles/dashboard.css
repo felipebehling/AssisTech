@@ -59,4 +59,8 @@ a {
   background-color: white !important;
   color: #3cc88f !important;
   border-color: #3cc88f !important;}
-  
+
+.edit-custom:hover {
+  background-color: #3cc88f !important;
+  color: white !important;
+}
