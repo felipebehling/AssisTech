@@ -307,13 +307,3 @@ def delete(request, pk):
 def localization(request, pk):
     relato = Relato.objects.get(pk=pk)
     return redirect(f'http://maps.google.com?q={relato.local}')
-
-def dados(request):
-    context = {}
-    list_relatos = Relato.objects.filter(categoria="2").order_by('-data_criacao')
-    paginator = Paginator(list_relatos, 15)
-    page = request.GET.get('page')
-    list_relatos = paginator.get_page(page)
-    context['relatos'] = list_relatos
-    context['total_relatos'] = Relato.objects.filter(categoria="2").count()
-    return render(request, 'pages/public_dashboard.html', context)

@@ -39,7 +39,4 @@ urlpatterns = [
       auth_views.PasswordResetCompleteView.as_view(template_name="pages/password_reset_done.html"), 
       name="password_reset_complete"),
 
-
-
-  path('dados/', views.dados, name='dados'),
 ]
