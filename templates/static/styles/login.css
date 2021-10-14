@@ -64,3 +64,9 @@ body {
     width: 100%;
   }
 }
+
+@media screen and (max-height: 900px) {
+  .card-header {
+    margin-top: 35px;
+  }
+}
