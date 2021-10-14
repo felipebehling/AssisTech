@@ -23,7 +23,7 @@ body {
 }
 
 .card-header {
-  margin-top: 20%;
+  margin-top: 35px;
 }
 
 .register-box {
@@ -39,7 +39,7 @@ body {
 }
 
 .login-box-msg {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .text-admin {
