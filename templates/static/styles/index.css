@@ -908,3 +908,7 @@ label {
   margin-top: 5px;
   font-size: 24px;
 }
+
+.col-mod {
+  width: 350px !important;
+}
