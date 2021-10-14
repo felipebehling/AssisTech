@@ -236,16 +236,8 @@ def report(request):
     print(request.GET)
     data = {}
     data['form'] = RelatoForm()
-    # Create MAp
-    m = folium.Map(location=[-26.900420999510086, -
-                   49.08161133527756], zoom_start=15)
-    folium.Marker(location=[-26.900420999510086, -49.08161133527756],
-                  tooltop='clique para mais', popup='Centro POP').add_to(m)
-    # Get html representation of map
-    m = m._repr_html_()
     context = {
         'form': RelatoForm(),
-        'm': m
     }
     return render(request, 'pages/report.html', context)
 
