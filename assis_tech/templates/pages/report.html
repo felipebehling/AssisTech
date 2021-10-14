@@ -32,7 +32,7 @@
     <div class="card-body pt-0">
       <p class="login-box-msg py-3"><b>Informações Pessoais</b></p>
 
-      <form action="/create/" method="POST">
+      <form action="/create/" id="form" method="POST">
         {% csrf_token %}
         
         <div class="input-group mb-2">
@@ -101,7 +101,7 @@
             <a class="btn btn-danger btn-block" href="{% url 'index' %}">Cancelar</a>
           </div>
           <div class="col-5 ml-auto mr-0">
-            <button type="submit" class="btn btn-success btn-block">Relatar</button>
+            <button type="submit" class="btn btn-success btn-block" id="submit_button">Relatar</button>
           </div>
         </div>
 
@@ -118,7 +118,9 @@
 
 
 <script>
-
+  $('#form').submit( function(event) {
+    $('#submit_button').attr('disabled', true);
+});
   new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
   new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
   
