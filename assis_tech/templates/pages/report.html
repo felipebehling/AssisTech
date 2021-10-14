@@ -118,9 +118,6 @@
 
 
 <script>
-  $('#form').submit( function(event) {
-    $('#submit_button').attr('disabled', true);
-});
   new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
   new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
   
