@@ -32,7 +32,7 @@
     <div class="card-body pt-0">
       <p class="login-box-msg py-3"><b>Informações Pessoais</b></p>
 
-      <form action="/create/" id="form" method="POST">
+      <form action="/create/" onsubmit="disableBtn()" id="form" method="POST">
         {% csrf_token %}
         
         <div class="input-group mb-2">
@@ -101,7 +101,7 @@
             <a class="btn btn-danger btn-block" href="{% url 'index' %}">Cancelar</a>
           </div>
           <div class="col-5 ml-auto mr-0">
-            <button type="submit" class="btn btn-success btn-block" id="submit_button">Relatar</button>
+            <button type="submit" class="btn btn-success btn-block" id="submit_button" >Relatar</button>
           </div>
         </div>
 
@@ -116,80 +116,17 @@
 <script src="{% static 'scripts/masks.js' %}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgZc-WY2Z8zaTOK8G0ApbWUkCbJI8TGB8&callback=initMap&v=weekly" async></script>
 
-
-<script>
-  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
-  new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
-  
-  function iniciarMap(lat, lng){
-    let mapa = document.getElementById('map')
-    let box = document.getElementsByClassName('register-page')[0]
-    // box = box.classList.add('mt-5')
-    mapa.style.display = 'block'
-    var options = {
-      zoom: 15,
-      center: {lat: lat, lng: lng}
-    }
-  var map = new
-  google.maps.Map(document.getElementById('map'), options);
-
-  var marker = new google.maps.Marker({
-    position:{lat: lat, lng: lng},
-    map: map,
-    icon : ''
-  });
-}
-
-  
-  function getLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        function(position){
-          
-          async function getAddress(url = '') {
-                      const response = await fetch(url, {
-                          method: 'GET',
-                      });
-                      return response.json(); // parses JSON response into native JavaScript objects
-                  }
-          
-                  getAddress(`https://api.opencagedata.com/geocode/v1/json?q=${position.coords.latitude}+${position.coords.longitude}&key=6714c5e3a132494d8b050ef5498e8356`)
-                  .then(data => {
-                      console.log(data); // JSON data parsed by `data.json()` call
-                      const obj = JSON.stringify(data)
-                      const road = data["results"][0]["components"]["road"]
-                      const number = data["results"][0]["components"]["house_number"]
-                      const city = data["results"][0]["components"]["city"]
-                      const district = data["results"][0]["components"]["suburb"]
-          
-                      document.querySelector('#local').value = `Próximo a ${road} nº ${number} ${district} ${city}`
-
-                      iniciarMap(position.coords.latitude, position.coords.longitude)
-                      
-                  });
-          
-        }, 
-        function(error){
-          console.log(error);
-        })
-      } else {
-        alert(".error.")
-      }
-    }
-    
-</script>
-
-
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap 4 -->
 <script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
-
-
 <!-- GoogleMaps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIenWSanVczJsy8QBmVm5FDvwH1E4fOfQ&callback=initMap"></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIenWSanVczJsy8QBmVm5FDvwH1E4fOfQ"></script>
+<script>
+    new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
+    new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
+</script>
 </body>
 </html>
