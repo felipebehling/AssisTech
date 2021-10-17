@@ -43,7 +43,7 @@ def index(request):
     context = {
         'm': m,
         'total_relatos': Relato.objects.filter().count(),
-        'pessoas_ajudadas': Relato.objects.filter(categoria='2').count()
+        'pessoas_ajudadas': Relato.objects.filter(categoria='3').count()
     }
     return render(request, 'pages/index.html', context)
 
@@ -247,7 +247,7 @@ def create(request):
         if form.is_valid():
             messages.add_message(request, messages.SUCCESS, 'Relato enviado com sucesso!')
             send_mail(
-                'Relato Enviado com Sucesso!',
+                'Relato foi enviado com sucesso!',
                 'Seu relato foi enviado com sucesso e será revisado em breve!',
                 'assistechentra21@gmail.com',
                 [request.POST['email']],
@@ -283,7 +283,24 @@ def edit(request, pk):
 def update(request, pk):
     relato = Relato.objects.get(pk=pk)
     form = RelatoForm(request.POST, instance=relato)
+    
     if form.is_valid():
+        if request.POST['categoria'] == "2":
+            send_mail(
+                'Relato está em observação!',
+                'O status do seu relato foi mudado para em observação, estamos encaminhando pessoas para verificá-lo!',
+                'assistechentra21@gmail.com',
+                [relato.email],
+                fail_silently=False
+            )
+        elif request.POST['categoria'] == "3":
+            send_mail(
+                'Relato foi verificado!',
+                'O status do seu relato foi mudado para verificado!',
+                'assistechentra21@gmail.com',
+                [relato.email],
+                fail_silently=False
+            )
         form.save()
         messages.add_message(request, messages.SUCCESS, 'Relato editado com sucesso!')
         return redirect('dashboard')
