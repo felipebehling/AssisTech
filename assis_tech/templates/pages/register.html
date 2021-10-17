@@ -104,10 +104,6 @@
 
 <script src="{% static 'scripts/masks.js' %}"></script>
 
-<script>
-  new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
-  new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
-</script>
 
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
@@ -115,6 +111,12 @@
 <script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'vendor/jQuery/dist/jquery.mask.min.js' %}"></script>
+<script>
+  $(document).ready(function(){
+    $('#cpf').mask('000.000.000-00')
+  })
+</script>
 </body>
 </html>
