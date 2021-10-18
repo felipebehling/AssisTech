@@ -64,3 +64,13 @@ a {
   background-color: #3cc88f !important;
   color: white !important;
 }
+
+.btn-customized {
+  width: 45px !important;
+}
+
+@media screen and (max-width: 1400px) {
+  .table-container {
+    width: 90%;
+  }
+}

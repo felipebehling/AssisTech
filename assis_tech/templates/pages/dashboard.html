@@ -100,16 +100,16 @@
                 <td>{{ relato.data_criacao }}</td>
                 <td>{{ relato.categoria }}</td>
                 <td class="py-lg-2">
-                  <a href="detail/{{ relato.id }}/" class="btn btn-outline-secondary">
+                  <a href="detail/{{ relato.id }}/" class="btn btn-outline-secondary btn-customized">
                     <i class="fas fa-search"></i>
                   </a>
-                  <a href="edit/{{ relato.id }}/" class="btn edit-custom">
+                  <a href="edit/{{ relato.id }}/" class="btn edit-custom btn-customized">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <a href="https://www.google.com.br/maps/search/{{relato.local}}/" class="btn btn-outline-primary" target="_blank">
+                  <a href="https://www.google.com.br/maps/search/{{relato.local}}/" class="btn btn-outline-primary btn-customized" target="_blank">
                     <i class="fas fa-map-marker-alt"></i>
                   </a>
-                  <button type="button" onClick="relatoDelete('{{ relato.id }}')" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+                  <button type="button" onClick="relatoDelete('{{ relato.id }}')" class="btn btn-outline-danger btn-customized" data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </td>
