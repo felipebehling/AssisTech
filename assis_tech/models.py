@@ -9,7 +9,7 @@ import os
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username, cpf,password=None):
         if not email:
             raise ValueError('Usuarios precisam ter um email!')
         if not username:
@@ -18,17 +18,19 @@ class MyAccountManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             username=username,
+            cpf=cpf,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password):
+    def create_superuser(self, email, username, password, cpf):
         user = self.create_user(
             email=self.normalize_email(email),
             password=password,
             username=username,
+            cpf=cpf,
         )
         user.is_admin = True
         user.is_staff = True
@@ -49,7 +51,7 @@ def get_default_profile_image():  # Caso a pessoa não coloque uma foto
 # Campos como is_admin, is_active, is_staff, is_superuser são obrigatorios para criar um model de usuario
 class Account(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
-    username = models.CharField(max_length=30, unique=True)
+    username = models.CharField(max_length=30, unique=False)
     cpf = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
