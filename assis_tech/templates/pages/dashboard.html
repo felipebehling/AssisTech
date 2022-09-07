@@ -52,25 +52,10 @@
         <div class="row d-flex">
           <div class="col">
             <form method="get" class="form-inline">
-              <div class="form-group d-block p-1 filters mx-1">
-                {% render_field myFilter.form.nome placeholder="Nome" class="filters-input" id="filter-name" autocomplete="off" %}
-                <!-- {% if myFilter.form.nome.value != "" %}
-                  <span onclick="deleteValue(0)"><i class="fas fa-times-circle"></i></span>
-                {% endif %}                 -->
-              </div>
-              <div class="form-group d-block p-1 filters mx-1">
-                {% render_field myFilter.form.cpf placeholder="CPF" class="filters-input" id="cpf" autocomplete="off" %}
-                <!-- {% if myFilter.form.cpf.value != "" %}
-                  <span onclick="deleteValue(1)"><i class="fas fa-times-circle"></i></span>
-                {% endif %} -->
-              </div>
-              <div class="form-group d-block p-1 filters mx-1">
-                {% render_field myFilter.form.categoria class="filters-input" id="filter-category" %}
-                <!-- {% if myFilter.form.categoria.value != "" %}
-                  <span onclick="deleteValue(2)"><i class="fas fa-times-circle"></i></span>
-                {% endif %} -->
-              </div>
-              <button class="btn btn-primary ml-2 btn-custom" type="submit" onsubmit="cleanMask()">Pesquisar</button>
+                {% render_field myFilter.form.nome placeholder="Nome" class="filters-input form-control d-block p-1 mx-1" id="filter-name" autocomplete="off" %}
+                {% render_field myFilter.form.cpf placeholder="CPF" class="filters-input form-control d-block p-1 mx-1" id="cpf" autocomplete="off" %}
+                {% render_field myFilter.form.categoria class="filters-input form-control d-block p-1 mx-1" id="filter-category" %}
+              <button class="btn btn-primary ml-2 btn-custom" type="submit">Pesquisar</button>
               {% if myFilter.form.categoria.value or myFilter.form.cpf.value or myFilter.form.nome.value %}
                 <a class="btn btn-secondary ml-2 btn-custom" href="/dashboard/">Limpar</a>
               {% endif %}

@@ -36,15 +36,13 @@ a {
   font-size: 16.5px;
 }
 
-.filters {
-  border: 1px solid grey;
-  border-radius: 5px;
-}
+
 
 .filters-input {
-  border: none;
-  outline: none;
+  border-radius: 5px;
+  outline: 0;
 }
+
 
 .dashboard-alert {
   z-index: 3;
