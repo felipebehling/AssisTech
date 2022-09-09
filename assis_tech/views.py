@@ -1,3 +1,5 @@
+from sqlite3 import connect
+from time import sleep
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -11,6 +13,9 @@ import json
 import base64
 import requests
 import os
+from email.message import EmailMessage
+import ssl
+import smtplib
 from django.core.files.storage import FileSystemStorage
 from django.core.files.storage import default_storage
 from django.core import files
@@ -246,13 +251,6 @@ def create(request):
         form = RelatoForm(request.POST)
         if form.is_valid():
             messages.add_message(request, messages.SUCCESS, 'Relato enviado com sucesso!')
-            send_mail(
-                'Relato foi enviado com sucesso!',
-                'Seu relato foi enviado com sucesso e será revisado em breve!',
-                'assistechentra21@gmail.com',
-                [request.POST['email']],
-                fail_silently=False
-            )
             form.save()
             return redirect('index')
 
@@ -285,22 +283,6 @@ def update(request, pk):
     form = RelatoForm(request.POST, instance=relato)
     
     if form.is_valid():
-        if request.POST['categoria'] == "2":
-            send_mail(
-                'Relato está em observação!',
-                'O status do seu relato foi mudado para em observação, estamos encaminhando pessoas para verificá-lo!',
-                'assistechentra21@gmail.com',
-                [relato.email],
-                fail_silently=False
-            )
-        elif request.POST['categoria'] == "3":
-            send_mail(
-                'Relato foi verificado!',
-                'O status do seu relato foi mudado para verificado!',
-                'assistechentra21@gmail.com',
-                [relato.email],
-                fail_silently=False
-            )
         form.save()
         messages.add_message(request, messages.SUCCESS, 'Relato editado com sucesso!')
         return redirect('dashboard')
