@@ -293,8 +293,9 @@
 <script src="{% static 'vendor/AdminLTE/dist/js/demo.js' %}"></script>  
 <script src="{% static 'scripts/masks.js' %}"></script>
 <script src="{% static 'scripts/index.js' %}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgZc-WY2Z8zaTOK8G0ApbWUkCbJI8TGB8&callback=initMap&v=weekly" async></script>
-
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+crossorigin=""></script>
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -303,6 +304,13 @@
   $(document).ready(function(){
     $('#cpf').mask('000.000.000-00')
   })
+  var map = L.map('map').setView([-26.90034222588692, -49.081623649870025], 18);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  minZoom: 12,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  var marker = L.marker([-26.90034222588692, -49.081623649870025]).addTo(map);
 </script>
 
 </body>

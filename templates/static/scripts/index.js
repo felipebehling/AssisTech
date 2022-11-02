@@ -60,18 +60,4 @@ window.move = function() {
     }
 }
 
-function initMap(){
-    let mapa = document.getElementById('map')
-    var options = {
-      zoom: 15,
-      center: {lat: -26.900420999510086 , lng: -49.08161133527756},
-    }
-    var map = new
-    google.maps.Map(mapa, options);
 
-    var marker = new google.maps.Marker({
-        position:{lat: -26.900420999510086, lng: -49.08161133527756},
-        map: map,
-        icon : ''
-    });
-}
