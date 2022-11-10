@@ -18,6 +18,9 @@
 
   <link rel="stylesheet" type="text/css" href="{% static 'styles/report.css' %}">
   <link rel="shortcut icon" href="{% static 'img/logo ps.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+     integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+     crossorigin=""/>
 </head>
 
 
@@ -114,7 +117,6 @@
 
 <script src="{% static 'scripts/report.js' %}"></script>
 <script src="{% static 'scripts/masks.js' %}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgZc-WY2Z8zaTOK8G0ApbWUkCbJI8TGB8&callback=initMap&v=weekly" async></script>
 
 <!-- jQuery -->
 <script src="{% static 'vendor/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
@@ -123,14 +125,38 @@
 <!-- AdminLTE App -->
 <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
 <!-- GoogleMaps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIenWSanVczJsy8QBmVm5FDvwH1E4fOfQ"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{% static 'vendor/jQuery/dist/jquery.mask.min.js' %}"></script>
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+crossorigin=""></script>
 <script>
   $(document).ready(function(){
     $('#cpf').mask('000.000.000-00')
     $('#tel').mask('(00)90000-0000')
   })
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        iniciarMap(lat, lng)
+      }) 
+    } else {
+      alert("Não é possível pegar a sua posição no seu navegador atual.")
+    }
+  }
+  function iniciarMap(lat, lng){
+    var mapa = document.querySelector('.map')
+    let map = L.map('map').setView([lat, lng], 18);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    minZoom: 12,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    var marker = L.marker([lat, lng]).addTo(map);
+    mapa.style.display  = 'block'
+  }
 </script>
 </body>
 </html>
