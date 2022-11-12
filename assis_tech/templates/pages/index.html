@@ -190,9 +190,11 @@
           <button class="btn pix" onclick="move2(), pix()"><img src="{% static 'img/pix.png' %}" alt="">
             <p>PIX</p>
           </button>
-          <button class="btn boleto" onclick="window.open('')"><i class="fas fa-barcode"></i>
-            <p>Boleto</p>
-          </button>
+          <a href="{% static 'img/boleto.jpg' %}" download>
+            <button class="btn boleto" onclick="window.open('')"><i class="fas fa-barcode"></i>
+              <p>Boleto</p>
+            </button>
+          </a>
         </div>
       </div>
 

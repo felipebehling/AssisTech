@@ -124,9 +124,9 @@
 <script src="{% static 'vendor/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'vendor/AdminLTE/dist/js/adminlte.min.js' %}"></script>
-<!-- GoogleMaps -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{% static 'vendor/jQuery/dist/jquery.mask.min.js' %}"></script>
+<!-- Nominatim(Mapa)-->
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
 integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
 crossorigin=""></script>
@@ -147,7 +147,8 @@ crossorigin=""></script>
     }
   }
   function iniciarMap(lat, lng){
-    var mapa = document.querySelector('.map')
+    let mapa = document.getElementsByClassName('map')[0]
+    mapa.style.display  = 'block'
     let map = L.map('map').setView([lat, lng], 18);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -155,7 +156,6 @@ crossorigin=""></script>
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
     var marker = L.marker([lat, lng]).addTo(map);
-    mapa.style.display  = 'block'
   }
 </script>
 </body>
