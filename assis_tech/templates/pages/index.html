@@ -104,20 +104,28 @@
           <i class="bi bi-x" id="buttonClose" onclick="closeX()" ></i>
         </div>
         <div class="select-amount">
-          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-one"><label for="radio-one">R$ 10</label></div>
-          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-two"><label for="radio-two">R$ 20</label></div>
-          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-three"><label for="radio-three">R$ 50</label></div>
-          <div class="select-box"><input type="radio" class="input" name="payment-group" id="radio-four"><label for="radio-four">R$ 100</label></div>
+          <div class="select-box">
+            <input type="radio" class="input" name="payment-group" id="radio-one" value="R$ 10"><label for="radio-one">R$ 10</label>
+          </div>
+          <div class="select-box">
+            <input type="radio" class="input" name="payment-group" id="radio-two" value="R$ 20"><label for="radio-two">R$ 20</label>
+          </div>
+          <div class="select-box">
+            <input type="radio" class="input" name="payment-group" id="radio-three" value="R$ 50"><label for="radio-three">R$ 50</label>
+          </div>
+          <div class="select-box">
+            <input type="radio" class="input" name="payment-group" id="radio-four" value="R$ 100"><label for="radio-four">R$ 100</label>
+          </div>
       </div>
         <div class="inputs">
             <div class="input-number">
                 <i class="fas fa-credit-card"></i><input type="number" placeholder="Número do cartão" id="inputCard">
             </div>
             <div class="input-cvv">
-                <input type="number" placeholder="CVV">
+                <input type="number" placeholder="CVV" id="cvv">
             </div>
             <div class="input-date">
-                <input type="text" list="month" placeholder="Mês Validade">
+                <input type="text" list="month" placeholder="Mês Validade" id="inputMonth">
                 <datalist id="month">
                     <option>Janeiro</option>
                     <option>Fevereiro</option>
@@ -132,7 +140,7 @@
                     <option>Novembro</option>
                     <option>Dezembro</option>
                 </datalist>
-                <input type="text" list="year" placeholder="Ano Validade">
+                <input type="text" list="year" placeholder="Ano Validade" id="inputYear">
                 <datalist id="year">
                     <option>2021</option>
                     <option>2022</option>
@@ -152,11 +160,11 @@
                 </datalist>
             </div>
             <div class="input-data">
-                <input type="text" placeholder="Nome do titular do cartão">
+                <input type="text" placeholder="Nome do titular do cartão" id="titularName">
                 <input type="tel" name='cpf' placeholder="CPF" id="cpf" autocomplete="off">
             </div>
             <div class="button">
-                <button id="buttonClose" onclick="closeX()">CONTINUAR</button>
+                <button id="buttonClose" onclick="finishCard()">CONTINUAR</button>
             </div>
         </div>
       </div>
@@ -167,17 +175,28 @@
           <i class="bi bi-x" id="buttonClose2" onclick="closeX2()" ></i>
         </div>
         <div class="select-amount">
-          <div class="select-box2"><input type="radio" class="input2" name="payment-group" id="radio-one2"><label for="radio-one2">R$ 10</label></div>
-          <div class="select-box2"><input type="radio" class="input2" name="payment-group" id="radio-two2"><label for="radio-two2">R$ 20</label></div>
-          <div class="select-box2"><input type="radio" class="input2" name="payment-group" id="radio-three2"><label for="radio-three2">R$ 50</label></div>
-          <div class="select-box2"><input type="radio" class="input2" name="payment-group" id="radio-four2"><label for="radio-four2">R$ 100</label></div>
+          <div class="select-box2">
+            <input type="radio" class="input2" name="payment-group" id="radio-one2" value="R$ 10"><label for="radio-one2">R$ 10</label>
+          </div>
+          <div class="select-box2">
+            <input type="radio" class="input2" name="payment-group" id="radio-two2" value="R$ 20"><label for="radio-two2">R$ 20</label>
+          </div>
+          <div class="select-box2">
+            <input type="radio" class="input2" name="payment-group" id="radio-three2" value="R$ 50"><label for="radio-three2">R$ 50</label>
+          </div>
+          <div class="select-box2">
+            <input type="radio" class="input2" name="payment-group" id="radio-four2" value="R$ 100"><label for="radio-four2">R$ 100</label>
+          </div>
         </div>
         <div class="inputvalue">
-          <input type="number" placeholder="ou informe um valor" class="inputvalue-pix">
+          <input type="number" placeholder="ou informe um valor" class="inputvalue-pix" id="anotherAmount">
         </div>
         <div class="button-pix">
-          <button id="closeX2" onclick="closeX2()">CONTINUAR</button>
+          <button id="closeX2" onclick="finishPix()">CONTINUAR</button>
         </div>
+      </div>
+      <div>
+        <img src="" alt="" srcset="">
       </div>
 
       <div class="donate" id="donate">
@@ -191,7 +210,7 @@
             <p>PIX</p>
           </button>
           <a href="{% static 'img/boleto.jpg' %}" download>
-            <button class="btn boleto" onclick="window.open('')"><i class="fas fa-barcode"></i>
+            <button class="btn boleto"><i class="fas fa-barcode"></i>
               <p>Boleto</p>
             </button>
           </a>

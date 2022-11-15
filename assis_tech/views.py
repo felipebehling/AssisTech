@@ -38,15 +38,7 @@ TEMP_PROFILE_IMAGE_NAME = "temp_profile_image.png"
 
 
 def index(request):
-    # Create MAp
-    m = folium.Map(location=[-26.900420999510086, -
-                   49.08161133527756], zoom_start=15)
-    folium.Marker(location=[-26.900420999510086, -49.08161133527756],
-                  tooltop='clique para mais', popup='Centro POP').add_to(m)
-    # Get html representation of map
-    m = m._repr_html_()
     context = {
-        'm': m,
         'total_relatos': Relato.objects.filter().count(),
         'pessoas_ajudadas': Relato.objects.filter(categoria='3').count()
     }
