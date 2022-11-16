@@ -119,13 +119,13 @@
       </div>
         <div class="inputs">
             <div class="input-number">
-                <i class="fas fa-credit-card"></i><input type="number" placeholder="Número do cartão" id="inputCard">
+                <i class="fas fa-credit-card"></i><input type="text" placeholder="Número do cartão" id="inputCard" maxlength="16" minlength="16">
             </div>
             <div class="input-cvv">
-                <input type="number" placeholder="CVV" id="cvv">
+                <input type="text" placeholder="CVV" id="cvv" maxlength="3" minlength="3">
             </div>
             <div class="input-date">
-                <input type="text" list="month" placeholder="Mês Validade" id="inputMonth">
+                <input type="text" list="month" placeholder="Mês Validade" id="inputMonth" autocomplete="off">
                 <datalist id="month">
                     <option>Janeiro</option>
                     <option>Fevereiro</option>
@@ -324,6 +324,7 @@ crossorigin=""></script>
 <script>
   $(document).ready(function(){
     $('#cpf').mask('000.000.000-00')
+    $('#inputCard').mask('0000.0000.0000.0000')
   })
   var map = L.map('map').setView([-26.90034222588692, -49.081623649870025], 18);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
